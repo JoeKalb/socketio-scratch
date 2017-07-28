@@ -1,0 +1,10 @@
+{
+  "name": "socketio-scratch",
+  "version": "1.0.0",
+  "description": "socetio testing",
+  "dependencies": {
+    "express": "^4.15.3",
+    "font-awesome": "^4.7.0",
+    "socket.io": "^2.0.3"
+  }
+}
