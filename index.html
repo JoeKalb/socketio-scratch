@@ -14,7 +14,10 @@
       <textarea id="m" autocomplete="off" onfocus="clearContents(this)" placeholder="Send a message">
       </textarea>
       <button id="setting" onclick="toggleSetting()"><i class="fa fa-cog" aria-hidden="true"></i></button>
-      <input type="text" placeholder="Add User Name" id="UserName">
+      <div id="settingsDiv">
+        <label for="nameInput">Username: </label>
+        <input type="text" placeholder="Add User Name" id="nameInput">
+      </div>
       <button id="chat" onclick="sendMessage()">Chat</button>
     </div>
     <script src="/socket.io/socket.io.js"></script>
