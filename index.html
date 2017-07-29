@@ -15,8 +15,37 @@
       </textarea>
       <button id="setting" onclick="toggleSetting()"><i class="fa fa-cog" aria-hidden="true"></i></button>
       <div id="settingsDiv">
-        <label for="nameInput">Username: </label>
-        <input type="text" placeholder="Add User Name" id="nameInput">
+        <label for="nameInput">Set Username: </label>
+        <br>
+        <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
+        <br>
+        <label for="iconChoices">Select Icon:</label>
+        <div id="iconChoices">
+          <button onclick="setIcon('fa fa-rebel')"><i id="rebel" class="fa fa-rebel fa-lg"></i></button>
+          <button onclick="setIcon('fa fa-empire')"><i id="empire" class="fa fa-empire fa-lg"></i></button>
+          <button onclick="setIcon('fa fa-rocket')"><i id="rocket" class="fa fa-rocket fa-lg"></i></button>
+          <button onclick="setIcon('fa fa-fighter-jet')"><i id="jet" class="fa fa-fighter-jet fa-lg"></i></button>
+          <button onclick="setIcon('fa fa-bolt')"><i id="bolt" class="fa fa-bolt fa-lg"></i></button>
+          <button onclick="setIcon('fa fa-simplybuilt')"><i id="built" class="fa fa-simplybuilt fa-lg"></i></button>
+        </div>
+        <label for="iconColorChoices">Select Icon Color:</label>
+        <div id="iconColorChoices">
+          <button class="colorButton" onclick='setIconColor("white")' style="background-color: white;"></button>
+          <button class="colorButton" onclick='setIconColor("red")' style="background-color: red;"></button>
+          <button class="colorButton" onclick='setIconColor("blue")' style="background-color: blue;"></button>
+          <button class="colorButton" onclick='setIconColor("green")' style="background-color: green;"></button>
+          <button class="colorButton" onclick='setIconColor("yellow")' style="background-color: yellow;"></button>
+          <button class="colorButton" onclick='setIconColor("cyan")' style="background-color: cyan;"></button>
+        </div>
+        <label for="nameColorChoices">Select Name Color:</label>
+        <div id="nameColorChoices">
+          <button class="colorButton" onclick='setNameColor("black")' style="background-color: black;"></button>
+          <button class="colorButton" onclick='setNameColor("red")' style="background-color: red;"></button>
+          <button class="colorButton" onclick='setNameColor("blue")' style="background-color: blue;"></button>
+          <button class="colorButton" onclick='setNameColor("green")' style="background-color: green;"></button>
+          <button class="colorButton" onclick='setNameColor("yellow")' style="background-color: yellow;"></button>
+          <button class="colorButton" onclick='setNameColor("cyan")' style="background-color: cyan;"></button>
+        </div>
       </div>
       <button id="chat" onclick="sendMessage()">Chat</button>
     </div>

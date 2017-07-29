@@ -1,8 +1,11 @@
 let socket = io();
 let list = document.getElementById("messages");
-let user = "";
+let user = "Joe";
+let userColor = "black";
 let date;
 let hasText = false;
+let iconValue = "";
+let iconColor = "white";
 let message = {
 	user: "",
 	text: "",
@@ -11,6 +14,10 @@ let message = {
 
 // initial document setting
 document.getElementById("nameInput").value = user;
+document.getElementById("currentIcon").className = iconValue;
+document.getElementById("currentIcon").style.color = iconColor;
+// needs to run once so it only needs one click to work on initial load
+toggleSetting();
 
 // Event Listeners
 document.getElementById("m").addEventListener("keypress", function(e){
@@ -18,7 +25,7 @@ document.getElementById("m").addEventListener("keypress", function(e){
 	if (key === 13 && e.value != "") {
 		sendMessage();
 		e.preventDefault();
-	}
+	} else hasText = true;
 });
 
 document.getElementById("nameInput").addEventListener("keypress", function(e){
@@ -29,9 +36,27 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 	}
 });
 
-// Client Functions
+// Client Settings Functions
 function setName() {
 	user = document.getElementById("nameInput").value;
+}
+
+function setIcon(icon) {
+	iconValue = icon;
+	showIconChoice(icon);
+}
+
+function showIconChoice(icon) {
+	document.getElementById("currentIcon").className = icon;
+}
+
+function setIconColor(color) {
+	iconColor = color;
+	document.getElementById("currentIcon").style.color = iconColor;
+}
+
+function setNameColor(color) {
+	userColor = color;
 }
 
 function toggleSetting() {
@@ -47,6 +72,7 @@ function clearContents(element) {
 	if (!hasText) element.value = '';	
 }
 
+// Sending functions
 function sendMessage() {
 	if (user === "") {
 		toggleSetting();
@@ -60,6 +86,7 @@ function sendMessage() {
 		message.time = date.toTimeString();
 		message.text = document.getElementById("m").value;
 		message.user = user;
+		message.nameColor = userColor;
 		socket.emit('chat message', message);
 		hasText = false;
 		clearContents(document.getElementById("m"));
@@ -70,15 +97,26 @@ function sendMessage() {
 function appendMessage(message) {
 	let span = document.createElement("span");
 	span.appendChild(appendTime(message.time));
+	if (iconValue != "")span.appendChild(appendIcon(iconValue));
 	span.appendChild(appendName(message.user));
 	span.appendChild(appendText(message.text));
 	return span;
 }
 
+function appendIcon(iconName) {
+	let icon = document.createElement("i");
+	icon.className = iconName;
+	icon.id = "iconId";
+	icon.style.color = iconColor;
+	return icon;
+}
+
 function appendName(name) {
 	let label = document.createElement("span");
 	label.className = "nameClass";
-	label.innerHTML = name;
+	label.id = "nameId";
+	label.innerHTML = " " + name;
+	label.style.color = userColor;
 	return label;
 }
 
