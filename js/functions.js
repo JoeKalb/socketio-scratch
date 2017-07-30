@@ -1,4 +1,6 @@
-let socket = io();
+const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
+const socket = io();
+
 let list = document.getElementById("messages");
 let user = "Joe";
 let userColor = "black";
@@ -12,7 +14,7 @@ let message = {
 	time: ""
 }
 let messageColor = "black";
-const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
+
 
 // initial document setting
 document.getElementById("nameInput").value = user;
@@ -99,15 +101,22 @@ function clearContents(element) {
 // Emote finding and replacing
 function findEmoteId(check) {
 	if (emotes[check]) {
-		let search = emoteURL.replace("{image_id}", emotes[check].id);
-		let value = getEmote(search);
-		return check + "emote";
+		let image = document.createElement("IMG");
+		image.src = emoteURL.replace("{image_id}", emotes[check].id);
+		image.alt = check;
+		return image;
 	}
-	return check;
+	let word = document.createTextNode(check + " ");
+	return word;
 }
 
 function replaceEmotes(text) {
-	return text.split(' ').map(findEmoteId).join(' ');
+	let words = text.split(' ');
+	let result = document.createElement("SPAN");
+	for(let i = 0; i < words.length; i++) {
+		result.appendChild(findEmoteId(words[i]));
+	}
+	return result;
 }
 
 function getEmote(urlValue) {
@@ -159,7 +168,7 @@ function appendName(name) {
 	let label = document.createElement("span");
 	label.className = "nameClass";
 	label.id = "nameId";
-	label.innerHTML = " " + name;
+	label.innerHTML = " " + name + ": ";
 	label.style.color = userColor;
 	return label;
 }
@@ -169,7 +178,7 @@ function appendText(text) {
 	p.className = "textClass";
 	text = replaceEmotes(text);
 	p.style.color = messageColor;
-	p.innerHTML = ": " + text;
+	p.appendChild(text);
 	return p;
 }
 
