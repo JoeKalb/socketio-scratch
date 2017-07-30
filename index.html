@@ -9,14 +9,23 @@
 	<title>Socket.IO Testing</title>
 </head>
 <body>
-  <div id="hearder">
-    <p id="roomName">Chat Room</p>
-  </div>
-	 <ul id="messages"></ul>
+  <!-- Header and Namespace settings will go here -->
+  <div id="visable">
+    <div id="hearder">
+      <p id="roomName">Chat Room</p>
+    </div>
+    <!-- Chat messages will live in this container -->
+    <div id="chatContainer">
+      <div id="scroll">
+        <ul id="messages"></ul>
+      </div>
+    </div>
+    <!-- Chat input area, Settings Icon and Submit Button -->
     <div id="footer">
       <textarea id="m" autocomplete="off" onfocus="clearContents(this)" placeholder="Send a message">
       </textarea>
       <button id="setting" onclick="toggleSetting()"><i class="fa fa-cog" aria-hidden="true"></i></button>
+      <!-- Settings -->
       <div id="settingsDiv">
         <label for="nameInput">Set Username: </label>
         <br>
@@ -58,8 +67,10 @@
           </label>
         </div>
       </div>
+      <!-- Chat Button -->
       <button id="chat" onclick="sendMessage()">Chat</button>
     </div>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="emotes.json"></script>
 	<script src="/js/functions.js"></script>

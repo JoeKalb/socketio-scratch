@@ -1,16 +1,27 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box;}
+html {
+	height: 100%;
+}
 body { 
 	font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif; 
 	width: 100%;
+	height: 100%;
 	word-wrap: break-word;
 	background-color: white;
+	overflow: hidden;
 }
 div { 
-	background: #D3D3D3; 
-	padding: 3px; 
 	width: 100%; 
 }
-div textarea { border: 0; padding: 10px; width: 100%; margin-right: .5%; }
+div textarea { 
+	border: 0; 
+	padding: 10px; 
+	width: 100%; 
+	height: 50px;
+	margin-right: .5%;
+	background-color: "white";
+	color: "black"; 
+}
 div #chat { 
 	width: 45px; 
 	height: 30px;
@@ -39,23 +50,35 @@ img {
 	vertical-align: bottom;
 }
 
+#visable {
+	height: 100%;
+}
+
 #header {
 	width: 100%;
 	height: 50px;
+	padding: 10px 0px;
 	position: fixed;
+	background-color: #D3D3D3;
+	top: 0;
+	flex: 0 0 auto;
 }
 
 #roomName {
-	height: 30px;
-	padding: 0px 10px;
-	margin-top: 10px;
+	height: 45px;
+	padding: 0px 0px;
 	text-align: center;
+	line-height: 3;
 	vertical-align: bottom;
+	background-color: #D3D3D3;
 }
 
 #footer {
+	padding: 3px;
 	position: fixed;
 	bottom: 0;
+	background: #D3D3D3;
+	flex: 0 0 auto;
 }
 
 #setting {
@@ -73,6 +96,8 @@ img {
 	width: 220px;
 	border: 1px solid rgb(100, 65, 164);
 	display:none;
+	background: #D3D3D3;
+	padding-left: 3px;
 }
 
 #settingsDiv button i {
@@ -97,11 +122,29 @@ img {
 	position: absolute;
 }
 
+#chatContainer {
+	position: static;
+	top: 0px;
+	height: calc(100% - 137px);
+}
+
+#chatContainer:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#scroll {
+	position: absolute;
+	overflow: auto;
+	height: calc(100% - 137px);
+}
+
 #messages { 
 	list-style-type: none; 
 	margin: 0; 
 	padding: 0;
-	overflow-y: auto; 
+	position: absolute;
 }
 #messages li { 
 	padding: 0px 10px 0px 10px; 
@@ -157,12 +200,13 @@ img {
 #darkModeLabel {
 	text-align: right;
 	float: left;
-	margin-right: 15px;
+	margin-right: 4px;
 }
 
 #darkMode {
 	float: left;
 	position: relative;
+	padding-top: 3px;
 }
 
 .switch {

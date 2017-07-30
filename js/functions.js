@@ -1,4 +1,5 @@
 const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
+const twitchEmoteAPI = 'https://twitchemotes.com/api_cache/v3/global.json';
 const socket = io();
 
 let list = document.getElementById("messages");
@@ -14,7 +15,17 @@ let message = {
 	time: ""
 }
 let messageColor = "black";
+let liveEmotes = getEmotes(twitchEmoteAPI).then((res) => { liveEmotes = res; });
 
+// get initial emotes from twitch api
+function getEmotes(urlValue) {
+	return fetch(urlValue).then((res) => {
+		if (res.ok) return res.json(); 
+		else reject(new Error('error'));
+	}, error => {
+		reject(new Error(error.message))
+	})
+}
 
 // initial document setting
 document.getElementById("nameInput").value = user;
@@ -69,20 +80,25 @@ function toggleDarkMode() {
 	let currentBackground = document.body.style.backgroundColor;
 	let messageText = document.getElementsByClassName("textClass");
 	if (currentBackground === "white") {
-		document.body.style.backgroundColor = "#202020";
-		messageColor = "white";
-		changeTextColor(messageText, "white");
+		setColors("#1e1e1e", "#D3D3D3");
+		changePrevTextColor(messageText, "#D3D3D3");
 	} else {
-		document.body.style.backgroundColor = "white";
-		messageColor = "black";
-		changeTextColor(messageText, "black");
+		setColors("white", "black");
+		changePrevTextColor(messageText, "black");
 	}
 }
 
-function changeTextColor(elements, color) {
+function changePrevTextColor(elements, color) {
 	for (let i = 0; i < elements.length; i++) {
 			elements[i].style.color = color;
 		}
+}
+
+function setColors(background, text) {
+	document.body.style.backgroundColor = background;
+	document.getElementById("m").style.backgroundColor = background;
+	document.getElementById("m").style.color = text;
+	messageColor = text;
 }
 
 function toggleSetting() {
@@ -100,10 +116,11 @@ function clearContents(element) {
 
 // Emote finding and replacing
 function findEmoteId(check) {
-	if (emotes[check]) {
+	if (liveEmotes[check]) {
 		let image = document.createElement("IMG");
-		image.src = emoteURL.replace("{image_id}", emotes[check].id);
+		image.src = emoteURL.replace("{image_id}", liveEmotes[check].id);
 		image.alt = check;
+		image.title = check;
 		return image;
 	}
 	let word = document.createTextNode(check + " ");
@@ -117,12 +134,6 @@ function replaceEmotes(text) {
 		result.appendChild(findEmoteId(words[i]));
 	}
 	return result;
-}
-
-function getEmote(urlValue) {
-	fetch(urlValue).then(function(res) {
-		console.log(res.body);
-	})
 }
 
 // Sending functions
@@ -192,13 +203,14 @@ function appendTime(currentTime) {
 
 // sockets
 socket.on('chat message', function(message) {
-		let li = document.createElement("li");
-		li.appendChild(appendMessage(message));
-		list.appendChild(li);
+	let li = document.createElement("li");
+	li.appendChild(appendMessage(message));
+	list.appendChild(li);
+	li.scrollIntoView();
 });
 
 socket.on('broadcast', function(message) {
-		let li = document.createElement("li");
-		li.appendChild(document.createTextNode(message));
-		list.appendChild(li);
+	let li = document.createElement("li");
+	li.appendChild(document.createTextNode(message));
+	list.appendChild(li);
 });
