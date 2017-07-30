@@ -3,10 +3,12 @@ const app = express();
 const http = require('http').Server(app);
 const path = require('path');
 const io = require('socket.io')(http);
+const fetch = require('node-fetch');
 
 app.use('/node_modules/font-awesome/', express.static(path.join(__dirname + '/node_modules/font-awesome/')));
 app.use('/styles', express.static(path.join(__dirname + '/styles')));
 app.use('/js', express.static(path.join(__dirname + '/js')));
+app.use('/', express.static(path.join(__dirname + '/')));
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });

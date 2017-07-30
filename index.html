@@ -9,7 +9,9 @@
 	<title>Socket.IO Testing</title>
 </head>
 <body>
-	<ul id="messages"></ul>
+  <span id="messageBackground">
+	 <ul id="messages"></ul>
+  </span>
     <div>
       <textarea id="m" autocomplete="off" onfocus="clearContents(this)" placeholder="Send a message">
       </textarea>
@@ -18,6 +20,7 @@
         <label for="nameInput">Set Username: </label>
         <br>
         <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
+        <br>
         <br>
         <label for="iconChoices">Select Icon:</label>
         <div id="iconChoices">
@@ -46,10 +49,18 @@
           <button class="colorButton" onclick='setNameColor("yellow")' style="background-color: yellow;"></button>
           <button class="colorButton" onclick='setNameColor("cyan")' style="background-color: cyan;"></button>
         </div>
+        <div id="darkMode">
+          <label id="darkModeLabel">Dark Mode: </label>
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode()">
+            <span class="slider round"></span>
+          </label>
+        </div>
       </div>
       <button id="chat" onclick="sendMessage()">Chat</button>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="emotes.json"></script>
 	<script src="/js/functions.js"></script>
 </body>
 </html>

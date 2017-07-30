@@ -3,6 +3,7 @@ body {
 	font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif; 
 	width: 100%;
 	word-wrap: break-word;
+	background-color: white;
 }
 div { 
 	background: #D3D3D3; 
@@ -41,9 +42,9 @@ button i {
 #settingsDiv {
 	position: absolute;
 	bottom: 33px;
-	height: 200px;
+	height: 235px;
 	margin-left: 3px;
-	width: 55%;
+	width: 220px;
 	border: 1px solid rgb(100, 65, 164);
 	display:none;
 }
@@ -64,7 +65,10 @@ button i {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	width: 87%;
-	margin-left: 5px;
+	margin-left: 0px;
+	height: 19px;
+	font-weight: bold;
+	position: absolute;
 }
 
 #messages { list-style-type: none; margin: 0; padding: 0; }
@@ -82,9 +86,9 @@ button i {
 	background-color: black;
 	color: white;
 	padding: 1px;
-	border-radius: 3px;
-	width: 17px;
-	height: 16px;
+	border-radius: 2px;
+	width: 18px;
+	height: 18px;
 	text-align: center;
 }
 
@@ -114,4 +118,71 @@ button i {
 	border-radius: 3px;
 	padding-top: 2px;
 	padding-left: 1px;
+}
+
+#darkModeLabel {
+	text-align: right;
+	float: left;
+	margin-right: 15px;
+}
+
+#darkMode {
+	float: left;
+	position: relative;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 30px;
+	height: 14.5px;
+}
+
+.switch input { display: none; }
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #696969;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 13px;
+	width: 13px;
+	left: 1px;
+	bottom: 1px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

@@ -11,6 +11,8 @@ let message = {
 	text: "",
 	time: ""
 }
+let messageColor = "black";
+const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
 
 // initial document setting
 document.getElementById("nameInput").value = user;
@@ -18,7 +20,8 @@ document.getElementById("currentIcon").className = iconValue;
 document.getElementById("currentIcon").style.color = iconColor;
 // needs to run once so it only needs one click to work on initial load
 toggleSetting();
-
+toggleDarkMode();
+ 
 // Event Listeners
 document.getElementById("m").addEventListener("keypress", function(e){
 	let key = e.which || e.keyCode;
@@ -57,6 +60,27 @@ function setIconColor(color) {
 
 function setNameColor(color) {
 	userColor = color;
+	document.getElementById("nameInput").style.color = color;
+}
+
+function toggleDarkMode() {
+	let currentBackground = document.body.style.backgroundColor;
+	let messageText = document.getElementsByClassName("textClass");
+	if (currentBackground === "white") {
+		document.body.style.backgroundColor = "#202020";
+		messageColor = "white";
+		changeTextColor(messageText, "white");
+	} else {
+		document.body.style.backgroundColor = "white";
+		messageColor = "black";
+		changeTextColor(messageText, "black");
+	}
+}
+
+function changeTextColor(elements, color) {
+	for (let i = 0; i < elements.length; i++) {
+			elements[i].style.color = color;
+		}
 }
 
 function toggleSetting() {
@@ -70,6 +94,26 @@ function toggleSetting() {
 
 function clearContents(element) {
 	if (!hasText) element.value = '';	
+}
+
+// Emote finding and replacing
+function findEmoteId(check) {
+	if (emotes[check]) {
+		let search = emoteURL.replace("{image_id}", emotes[check].id);
+		let value = getEmote(search);
+		return check + "emote";
+	}
+	return check;
+}
+
+function replaceEmotes(text) {
+	return text.split(' ').map(findEmoteId).join(' ');
+}
+
+function getEmote(urlValue) {
+	fetch(urlValue).then(function(res) {
+		console.log(res.body);
+	})
 }
 
 // Sending functions
@@ -123,6 +167,8 @@ function appendName(name) {
 function appendText(text) {
 	let p = document.createElement("span");
 	p.className = "textClass";
+	text = replaceEmotes(text);
+	p.style.color = messageColor;
 	p.innerHTML = ": " + text;
 	return p;
 }
