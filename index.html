@@ -12,7 +12,14 @@
   <!-- Header and Namespace settings will go here -->
   <div id="visable">
     <div id="header" class="staticItem">
+      <button id="addEmote" onclick="toggleMenu('addItemsMenu')" title="Add Channel"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
       <h4 id="roomName">Chat Room</h4>
+    </div>
+    <div id="addItemsMenu" class="staticItem popUp">
+        <label for="streamer">Add a streamers emotes: </label>
+        <br>
+        <input type="text" placeholder="Search Streamer" id="streamerInput">
+        <button onclick=''>Search</button>
     </div>
     <!-- Chat messages will live in this container -->
     <div id="chatContainer">
@@ -24,9 +31,9 @@
     <div id="footer" class="staticItem">
       <textarea id="m" autocomplete="off" onfocus="clearContents(this)" placeholder="Send a message">
       </textarea>
-      <button id="setting" onclick="toggleSetting()"><i class="fa fa-cog" aria-hidden="true"></i></button>
+      <button id="setting" onclick="toggleMenu('settingsDiv')" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></button>
       <!-- Settings -->
-      <div id="settingsDiv" class="staticItem">
+      <div id="settingsDiv" class="staticItem popUp">
         <label for="nameInput" class="settingsLabel">Set Username: </label>
         <br>
         <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">

@@ -20,7 +20,8 @@ document.getElementById("nameInput").value = user;
 document.getElementById("currentIcon").className = iconValue;
 document.getElementById("currentIcon").style.color = iconColor;
 // needs to run once so it only needs one click to work on initial load
-toggleSetting();
+toggleMenu("settingsDiv");
+toggleMenu("addItemsMenu");
 toggleDarkMode();
 //toggleTimeStamp();
  
@@ -37,7 +38,7 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 	let key = e.which || e.keyCode;
 	if (key === 13 && e.value != "") {
 		setName();
-		toggleSetting();
+		toggleMenu("settingsDiv");
 	}
 });
 
@@ -115,8 +116,8 @@ function setColors(background, text, divBackground) {
 	messageColor = text;
 }
 
-function toggleSetting() {
-	let div = document.getElementById("settingsDiv");
+function toggleMenu(id) {
+	let div = document.getElementById(id);
 	if (div.style.display === 'none') {
 		div.style.display = 'block';
 	} else {

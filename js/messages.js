@@ -3,7 +3,7 @@
 	The top of this is how the messages will be built on the client side.
 	The bottom defines the socket functions for the server listeners.
 */
-	
+
 // Sending functions
 function sendMessage() {
 	if (user === "") {
@@ -81,6 +81,7 @@ socket.on('chat message', function(message) {
 
 socket.on('broadcast', function(message) {
 	let li = document.createElement("li");
+	li.style.color = "#696969";
 	li.appendChild(document.createTextNode(message));
 	list.appendChild(li);
 });

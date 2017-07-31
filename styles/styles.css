@@ -68,8 +68,17 @@ img {
 	flex: 0 0 auto;
 }
 
+#addEmote {
+	border: none;
+	float: left;
+	margin-top: 12px;
+	margin-left: 5px;
+	font-size: 13px;
+}
+
 #roomName {
 	height: 45px;
+	width: auto;
 	padding: 0px 0px;
 	text-align: center;
 	line-height: 3;
@@ -84,6 +93,25 @@ img {
 	flex: 0 0 auto;
 }
 
+.popUp {
+	position: absolute;
+	border: 1px solid rgb(100, 65, 164);
+	height: auto;
+	width: auto;
+	display:none;
+	margin-left: 3px;
+	padding-left: 3px;
+	z-index: 1;
+}
+
+#addItemsMenu {
+	top: 27px;
+	left: 5px;
+	position: relative;
+	width: 250px;
+
+}
+
 #setting {
 	border: none;
 	float: left;
@@ -92,14 +120,7 @@ img {
 }
 
 #settingsDiv {
-	position: absolute;
 	bottom: 33px;
-	height: auto;
-	margin-left: 3px;
-	width: 220px;
-	border: 1px solid rgb(100, 65, 164);
-	display:none;
-	padding-left: 3px;
 }
 
 #settingsDiv button i {
