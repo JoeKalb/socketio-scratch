@@ -11,8 +11,8 @@
 <body>
   <!-- Header and Namespace settings will go here -->
   <div id="visable">
-    <div id="hearder">
-      <p id="roomName">Chat Room</p>
+    <div id="header" class="staticItem">
+      <h4 id="roomName">Chat Room</h4>
     </div>
     <!-- Chat messages will live in this container -->
     <div id="chatContainer">
@@ -21,18 +21,18 @@
       </div>
     </div>
     <!-- Chat input area, Settings Icon and Submit Button -->
-    <div id="footer">
+    <div id="footer" class="staticItem">
       <textarea id="m" autocomplete="off" onfocus="clearContents(this)" placeholder="Send a message">
       </textarea>
       <button id="setting" onclick="toggleSetting()"><i class="fa fa-cog" aria-hidden="true"></i></button>
       <!-- Settings -->
-      <div id="settingsDiv">
-        <label for="nameInput">Set Username: </label>
+      <div id="settingsDiv" class="staticItem">
+        <label for="nameInput" class="settingsLabel">Set Username: </label>
         <br>
         <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
         <br>
         <br>
-        <label for="iconChoices">Select Icon:</label>
+        <label for="iconChoices" class="settingsLabel">Select Icon:</label>
         <div id="iconChoices">
           <button onclick="setIcon('fa fa-rebel')"><i id="rebel" class="fa fa-rebel fa-lg"></i></button>
           <button onclick="setIcon('fa fa-empire')"><i id="empire" class="fa fa-empire fa-lg"></i></button>
@@ -41,7 +41,7 @@
           <button onclick="setIcon('fa fa-bolt')"><i id="bolt" class="fa fa-bolt fa-lg"></i></button>
           <button onclick="setIcon('fa fa-simplybuilt')"><i id="built" class="fa fa-simplybuilt fa-lg"></i></button>
         </div>
-        <label for="iconColorChoices">Select Icon Color:</label>
+        <label for="iconColorChoices" class="settingsLabel">Select Icon Color:</label>
         <div id="iconColorChoices">
           <button class="colorButton" onclick='setIconColor("white")' style="background-color: white;"></button>
           <button class="colorButton" onclick='setIconColor("red")' style="background-color: red;"></button>
@@ -50,7 +50,7 @@
           <button class="colorButton" onclick='setIconColor("yellow")' style="background-color: yellow;"></button>
           <button class="colorButton" onclick='setIconColor("cyan")' style="background-color: cyan;"></button>
         </div>
-        <label for="nameColorChoices">Select Name Color:</label>
+        <label for="nameColorChoices" class="settingsLabel">Select Name Color:</label>
         <div id="nameColorChoices">
           <button class="colorButton" onclick='setNameColor("black")' style="background-color: black;"></button>
           <button class="colorButton" onclick='setNameColor("red")' style="background-color: red;"></button>
@@ -60,9 +60,16 @@
           <button class="colorButton" onclick='setNameColor("cyan")' style="background-color: cyan;"></button>
         </div>
         <div id="darkMode">
-          <label id="darkModeLabel">Dark Mode: </label>
+          <label id="darkModeLabel" class="settingsLabel">Dark Mode: </label>
           <label class="switch">
             <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode()">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div id="timeStamp">
+          <label id="timeStampLabel" class="settingsLabel">Show Time: </label>
+          <label class="switch">
+            <input type="checkbox" id="timeToggle" onclick="toggleTimeStamp()">
             <span class="slider round"></span>
           </label>
         </div>
@@ -73,6 +80,8 @@
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="emotes.json"></script>
-	<script src="/js/functions.js"></script>
+  <script src="/js/globals.js"></script>
+  <script src="/js/settings.js"></script>
+  <script src="/js/messages.js"></script>
 </body>
 </html>
