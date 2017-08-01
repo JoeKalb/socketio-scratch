@@ -16,6 +16,7 @@ let iconValue = "";
 let iconColor = "white";
 let message = {
 	user: "",
+	nameColor: "",
 	text: "",
 	time: ""
 }

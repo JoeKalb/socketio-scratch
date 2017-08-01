@@ -12,10 +12,11 @@ function getJson(urlValue) {
 		reject(new Error(error.message))
 	})
 }
-
+/*
 getJson('../subscriber.json').then((res) => { 
 	subscriberEmotes = res; 
 });
+*/
 getJson('../global.json').then((res) => { 
 	localEmotes = res; 
 });
@@ -134,4 +135,3 @@ function toggleMenu(id) {
 function clearContents(element) {
 	if (!hasText) element.value = '';	
 }
-

@@ -15,10 +15,14 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
 
-	socket.broadcast.emit('broadcast', "New User Connected");
+	socket.broadcast.emit('broadcast', "New User Connected PogChamp");
 	
 	socket.on('chat message', function(message) {
 		io.emit('chat message', message);
+	});
+
+	socket.on('disconnect', () => {
+		io.emit('disconnect', 'User Has Disconnected BibleThump');
 	});
 });
 

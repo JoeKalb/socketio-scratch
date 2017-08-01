@@ -25,6 +25,7 @@ function replaceEmotes(text) {
 	}
 	return result;
 }
+
 // Sending functions
 function sendMessage() {
 	if (user === "") {
@@ -53,7 +54,7 @@ function appendMessage(message) {
 	span.id = message.time;
 	if (timeStamp) span.appendChild(appendTime(message.time));
 	if (iconValue != "")span.appendChild(appendIcon(iconValue));
-	span.appendChild(appendName(message.user));
+	span.appendChild(appendName(message.user, message.nameColor));
 	span.appendChild(appendText(message.text));
 	return span;
 }
@@ -66,12 +67,12 @@ function appendIcon(iconName) {
 	return icon;
 }
 
-function appendName(name) {
+function appendName(name, color) {
 	let label = document.createElement("span");
 	label.className = "nameClass";
 	label.id = "nameId";
 	label.innerHTML = " " + name + ": ";
-	label.style.color = userColor;
+	label.style.color = color;
 	return label;
 }
 
@@ -103,6 +104,13 @@ socket.on('chat message', function(message) {
 socket.on('broadcast', function(message) {
 	let li = document.createElement("li");
 	li.style.color = "#696969";
-	li.appendChild(document.createTextNode(message));
+	li.appendChild(appendText(message));
+	list.appendChild(li);
+});
+
+socket.on('disconnect', function(message) {
+	let li = document.createElement("li");
+	li.style.color = "#696969";
+	li.appendChild(appendText(message));
 	list.appendChild(li);
 });
