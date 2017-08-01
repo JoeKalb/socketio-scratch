@@ -11,17 +11,30 @@
 <body>
   <!-- Header and Namespace settings will go here -->
   <div id="visable">
-    <div id="header" class="staticItem">
-      <button id="addEmote" onclick="toggleMenu('addItemsMenu')" title="Add Channel"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-      <h4 id="roomName">Chat Room</h4>
-    </div>
-    <div id="addItemsMenu" class="staticItem popUp">
-        <label for="streamer" class="settingsLabel">Add a streamers emotes: </label>
+    <div id="leftNav" class="sidenav" onmouseleave="closeSideBar()">
+      <div id="leftNavItems">
+        <div id="streamersDiv" class="nonStatic">
+          <h4>Add Streamer Emotes: </h4>
+          <input type="text" placeholder="Search Streamer" id="streamerInput">
+          <button onclick='findStreamer()' class="sideBtnClass">
+            <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+          </button>
+        </div>
         <br>
-        <input type="text" placeholder="Search Streamer" id="streamerInput">
-        <button onclick=''>Search</button>
-        <button onclick="console.log('1')">Room 1</button>
-        <button onclick="console.log('2')">Room 2</button>
+        <div id="emotesDiv" class="nonStatic">
+          <h4>Test New Emotes: </h4>
+          <input type="file" id="uploadEmote"/>
+          <br>
+          <input type="text" placeholder="Emote Name">
+          <button class="sideBtnClass">
+            <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="header" class="staticItem">
+      <button id="addEmote" onmouseover="openSideBar()" title="Add Channel"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+      <h4 id="roomName">Chat Room</h4>
     </div>
     <!-- Chat messages will live in this container -->
     <div id="chatContainer">

@@ -50,6 +50,50 @@ img {
 	vertical-align: bottom;
 }
 
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	background-color: rgba(17, 17, 17, .9);
+	word-wrap: break-word;
+	transition: 0.2s;
+	padding-top: 25px;
+}
+
+.sidenav #leftNavItems {
+	visibility: hidden;
+	padding-left: 5px;
+}
+
+.sidenav h4 {
+	color: #D3D3D3;
+}
+
+.sidenav button i {
+	border: none;
+}
+
+.sidenav #closeBtn {
+	position: absolute;
+	top: 0;
+	right: 30px;
+	margin-left: 50px
+}
+
+
+.sideBtnClass {
+	background-color: rgba(17, 17, 17, .9);
+	border-radius: 1px;
+	border: none;
+}
+
+#uploadEmote {
+	color: #D3D3D3;
+}
+
 .staticItem {
 	background-color: #D3D3D3;
 	width: 100%;
@@ -97,9 +141,10 @@ img {
 	position: absolute;
 	border: 1px solid rgb(100, 65, 164);
 	height: auto;
-	width: auto;
+	width: auto; 
 	display:none;
 	margin-left: 3px;
+	margin-right: 0px;
 	padding-left: 3px;
 	z-index: 1;
 }
@@ -148,7 +193,7 @@ img {
 #chatContainer {
 	position: fixed;
 	top: 45px;
-	height: calc(100% - 137px);
+	height: calc(100% - 140px);
 }
 
 #chatContainer:after {

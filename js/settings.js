@@ -12,11 +12,11 @@ function getJson(urlValue) {
 		reject(new Error(error.message))
 	})
 }
-/*
+
 getJson('../subscriber.json').then((res) => { 
 	subscriberEmotes = res; 
 });
-*/
+
 getJson('../global.json').then((res) => { 
 	localEmotes = res; 
 });
@@ -27,7 +27,6 @@ document.getElementById("currentIcon").className = iconValue;
 document.getElementById("currentIcon").style.color = iconColor;
 // needs to run once so it only needs one click to work on initial load
 toggleMenu("settingsDiv");
-toggleMenu("addItemsMenu");
 toggleDarkMode();
  
 // Event Listeners
@@ -44,6 +43,13 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 	if (key === 13 && e.value != "") {
 		setName();
 		toggleMenu("settingsDiv");
+	}
+});
+
+document.getElementById("streamerInput").addEventListener("keypress", function(e){
+	let key = e.which || e.keyCode;
+	if (key === 13 && e.value != "") {
+		findStreamer();
 	}
 });
 
@@ -118,7 +124,6 @@ function setColors(background, text, divBackground) {
 	document.getElementById("roomName").style.color = text;
 	document.getElementById("setting").style.backgroundColor = divBackground;
 	document.getElementById("settingsDiv").style.backgroundColor = divBackground;
-	document.getElementById("addItemsMenu").style.backgroundColor = divBackground;
 	document.getElementById("m").style.color = text;
 	messageColor = text;
 }
@@ -132,6 +137,68 @@ function toggleMenu(id) {
 	}
 }
 
+function openSideBar() {
+	document.getElementById("leftNav").style.width = "250px";
+	document.getElementById("leftNavItems").style.visibility = "visible";
+}
+
+function closeSideBar() {
+	document.getElementById("leftNav").style.width = "0";
+	document.getElementById("leftNavItems").style.visibility = "hidden";
+}
+
 function clearContents(element) {
 	if (!hasText) element.value = '';	
+}
+
+// adding different streamer emotes
+function getStreamerData(name) {
+	fetch(twitchUsersURL.replace('{name}', name), {
+		headers: twitchHeaders
+	}).then((res) => {
+		return res.json();
+	}).then((json) => {
+		addStreamer(json);
+	}).catch((err) => {
+		console.log(err);
+	})
+}
+
+function findStreamer() {
+	let streamer = document.getElementById("streamerInput").value;
+	streamer = streamer.trim();
+	streamer = streamer.split(' ').join('');
+	getStreamerData(streamer);
+	document.getElementById("streamerInput").value = '';
+}
+
+function addStreamer(data) {
+	for(let i = 0; i < data._total; i++) {
+		createListItem(data.users[i]);
+		addStreamerEmotes(data.users[i]._id);
+	}
+}
+
+function createListItem(streamer) {
+	let span = document.createElement("span");
+	let img = document.createElement("img");
+	span.id = streamer.name;
+	img.src = streamer.logo;
+	img.title = streamer.display_name;
+	img.style.width = "30%";
+	img.style.height = "30%";
+	span.appendChild(img);
+	document.getElementById("streamersDiv").appendChild(span);
+}
+
+function addStreamerEmotes(id) {
+	let newEmotes = subscriberEmotes[id].emotes;
+	let emoteNames = [];
+	for (let i = 0; i < newEmotes.length; i++) {
+		emoteNames.push(newEmotes[i].code);
+		localEmotes[newEmotes[i].code] = {
+			"id": newEmotes[i].id
+		}
+	}
+	console.log("Emotes Added: " + emoteNames.join(', '));
 }
