@@ -4,7 +4,7 @@
 */
 
 // get initial emotes from twitch api
-function getEmotes(urlValue) {
+function getJson(urlValue) {
 	return fetch(urlValue).then((res) => {
 		if (res.ok) return res.json(); 
 		else reject(new Error('error'));
@@ -13,7 +13,12 @@ function getEmotes(urlValue) {
 	})
 }
 
-getEmotes(twitchEmoteAPI).then((res) => { liveEmotes = res; });
+getJson('../subscriber.json').then((res) => { 
+	subscriberEmotes = res; 
+});
+getJson('../global.json').then((res) => { 
+	localEmotes = res; 
+});
 
 // initial document setting
 document.getElementById("nameInput").value = user;
@@ -23,7 +28,6 @@ document.getElementById("currentIcon").style.color = iconColor;
 toggleMenu("settingsDiv");
 toggleMenu("addItemsMenu");
 toggleDarkMode();
-//toggleTimeStamp();
  
 // Event Listeners
 document.getElementById("m").addEventListener("keypress", function(e){
@@ -109,9 +113,11 @@ function setColors(background, text, divBackground) {
 	document.getElementById("m").style.backgroundColor = background;
 	document.getElementById("footer").style.backgroundColor = divBackground;
 	document.getElementById("roomName").style.backgroundColor = divBackground;
+	document.getElementById("addEmote").style.backgroundColor = divBackground;
 	document.getElementById("roomName").style.color = text;
 	document.getElementById("setting").style.backgroundColor = divBackground;
 	document.getElementById("settingsDiv").style.backgroundColor = divBackground;
+	document.getElementById("addItemsMenu").style.backgroundColor = divBackground;
 	document.getElementById("m").style.color = text;
 	messageColor = text;
 }
@@ -129,24 +135,3 @@ function clearContents(element) {
 	if (!hasText) element.value = '';	
 }
 
-// Emote finding and replacing
-function findEmoteId(check) {
-	if (liveEmotes[check]) {
-		let image = document.createElement("IMG");
-		image.src = emoteURL.replace("{image_id}", liveEmotes[check].id);
-		image.alt = check;
-		image.title = check;
-		return image;
-	}
-	let word = document.createTextNode(check + " ");
-	return word;
-}
-
-function replaceEmotes(text) {
-	let words = text.split(' ');
-	let result = document.createElement("SPAN");
-	for(let i = 0; i < words.length; i++) {
-		result.appendChild(findEmoteId(words[i]));
-	}
-	return result;
-}

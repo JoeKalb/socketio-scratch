@@ -22,3 +22,5 @@ let message = {
 let messageColor = "black";
 let liveEmotes;
 let timeStamp = false;
+let subscriberEmotes;
+let localEmotes;

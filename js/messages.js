@@ -4,6 +4,27 @@
 	The bottom defines the socket functions for the server listeners.
 */
 
+// Emote finding and replacing
+function findEmoteId(check) {
+	if (localEmotes[check]) {
+		let image = document.createElement("IMG");
+		image.src = emoteURL.replace("{image_id}", localEmotes[check].id);
+		image.alt = check;
+		image.title = check;
+		return image;
+	}
+	let word = document.createTextNode(check + " ");
+	return word;
+}
+
+function replaceEmotes(text) {
+	let words = text.split(' ');
+	let result = document.createElement("SPAN");
+	for(let i = 0; i < words.length; i++) {
+		result.appendChild(findEmoteId(words[i]));
+	}
+	return result;
+}
 // Sending functions
 function sendMessage() {
 	if (user === "") {
