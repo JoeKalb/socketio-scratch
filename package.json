@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "socetio testing",
   "dependencies": {
+    "co": "^4.6.0",
     "express": "^4.15.3",
     "font-awesome": "^4.7.0",
     "node-fetch": "^1.7.1",

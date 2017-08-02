@@ -28,7 +28,6 @@ let message = {
 let messageColor = "black";
 let liveEmotes;
 let timeStamp = false;
-let subscriberEmotes;
 let localEmotes;
 
 // Stop any IMG downloading, shoutout to forestmist.org

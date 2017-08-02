@@ -13,11 +13,7 @@ function getJson(urlValue) {
 	})
 }
 
-getJson('../subscriber.json').then((res) => { 
-	subscriberEmotes = res; 
-});
-
-getJson('../global.json').then((res) => { 
+getJson(location + 'globals').then((res) => { 
 	localEmotes = res; 
 });
 
@@ -164,6 +160,16 @@ function getStreamerData(name) {
 	})
 }
 
+function getStreamerInfo(id) {
+	fetch(location + 'broadcaster/' + id).then((res) => {
+		return res.json();
+	}).then((json) => {
+		addStreamerEmotes(json)
+	}).catch((err) => {
+		console.log(err);
+	})
+}
+
 function findStreamer() {
 	let streamer = document.getElementById("streamerInput").value;
 	streamer = streamer.trim();
@@ -175,7 +181,7 @@ function findStreamer() {
 function addStreamer(data) {
 	for(let i = 0; i < data._total; i++) {
 		createListItem(data.users[i]);
-		addStreamerEmotes(data.users[i]._id);
+		getStreamerInfo(data.users[i]._id);
 	}
 }
 
@@ -191,8 +197,8 @@ function createListItem(streamer) {
 	document.getElementById("streamersDiv").appendChild(span);
 }
 
-function addStreamerEmotes(id) {
-	let newEmotes = subscriberEmotes[id].emotes;
+function addStreamerEmotes(streamerData) {
+	let newEmotes = streamerData.emotes;
 	let emoteNames = [];
 	for (let i = 0; i < newEmotes.length; i++) {
 		emoteNames.push(newEmotes[i].code);
