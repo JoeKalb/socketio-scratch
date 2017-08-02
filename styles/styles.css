@@ -157,6 +157,15 @@ img {
 
 }
 
+#streamerDiv {
+
+}
+
+.streamersClass {
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+}
 #setting {
 	border: none;
 	float: left;
@@ -202,7 +211,7 @@ img {
 	clear: both;
 }
 
-#scroll {
+.scroll {
 	position: absolute;
 	overflow: auto;
 	height: 100%;

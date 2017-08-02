@@ -13,10 +13,12 @@ function getCache() {
 	co(function *() {
 		let res = yield fetch('https://twitchemotes.com/api_cache/v3/global.json');
 		globals = yield res.json();
+		console.log("Gloabal Emotes Cache Updated");
 	});
 	co(function *() {
 		let res = yield fetch('https://twitchemotes.com/api_cache/v3/subscriber.json');
 		broadcasters = yield res.json();
+		console.log("Broadcasters Data Updated");
 	});
 }
 getCache();

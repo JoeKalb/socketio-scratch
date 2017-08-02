@@ -11,8 +11,10 @@
 <body>
   <!-- Header and Namespace settings will go here -->
   <div id="visable">
-    <div id="leftNav" class="sidenav" onmouseleave="closeSideBar()">
-      <div id="leftNavItems">
+    <!-- Side Nav Area -->>
+    <div id="leftNav" class="sidenav" >
+      <div id="leftNavItems" class="scroll">
+        <button onclick="closeSideBar()"><i>Close</i></button>
         <div id="streamersDiv" class="nonStatic">
           <h4>Add Streamer Emotes: </h4>
           <input type="text" placeholder="Search Streamer" id="streamerInput">
@@ -23,22 +25,23 @@
         <br>
         <div id="emotesDiv" class="nonStatic">
           <h4>Test New Emotes: </h4>
-          <input type="file" id="uploadEmote"/>
+          <input type="file" id="emoteFile"/>
           <br>
-          <input type="text" placeholder="Emote Name">
-          <button class="sideBtnClass">
+          <input type="text" placeholder="Emote Name" id="emoteName">
+          <button class="sideBtnClass" onclick="uploadImage()">
             <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
           </button>
         </div>
       </div>
     </div>
+    <!-- Heading Area -->
     <div id="header" class="staticItem">
       <button id="addEmote" onmouseover="openSideBar()" title="Add Channel"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
       <h4 id="roomName">Chat Room</h4>
     </div>
     <!-- Chat messages will live in this container -->
     <div id="chatContainer">
-      <div id="scroll">
+      <div class="scroll">
         <ul id="messages"></ul>
       </div>
     </div>
@@ -103,6 +106,7 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/globals.js"></script>
   <script src="/js/settings.js"></script>
+  <script src="/js/uploads.js"></script>
   <script src="/js/messages.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 	There are currently only 6 and that took well over 100 lines of code...
 */
 
-// get initial emotes from twitch api
+// get initial emotes from twitch emotes api
 function getJson(urlValue) {
 	return fetch(urlValue).then((res) => {
 		if (res.ok) return res.json(); 
@@ -147,64 +147,3 @@ function clearContents(element) {
 	if (!hasText) element.value = '';	
 }
 
-// adding different streamer emotes
-function getStreamerData(name) {
-	fetch(twitchUsersURL.replace('{name}', name), {
-		headers: twitchHeaders
-	}).then((res) => {
-		return res.json();
-	}).then((json) => {
-		addStreamer(json);
-	}).catch((err) => {
-		console.log(err);
-	})
-}
-
-function getStreamerInfo(id) {
-	fetch(location + 'broadcaster/' + id).then((res) => {
-		return res.json();
-	}).then((json) => {
-		addStreamerEmotes(json)
-	}).catch((err) => {
-		console.log(err);
-	})
-}
-
-function findStreamer() {
-	let streamer = document.getElementById("streamerInput").value;
-	streamer = streamer.trim();
-	streamer = streamer.split(' ').join('');
-	getStreamerData(streamer);
-	document.getElementById("streamerInput").value = '';
-}
-
-function addStreamer(data) {
-	for(let i = 0; i < data._total; i++) {
-		createListItem(data.users[i]);
-		getStreamerInfo(data.users[i]._id);
-	}
-}
-
-function createListItem(streamer) {
-	let span = document.createElement("span");
-	let img = document.createElement("img");
-	span.id = streamer.name;
-	img.src = streamer.logo;
-	img.title = streamer.display_name;
-	img.style.width = "30%";
-	img.style.height = "30%";
-	span.appendChild(img);
-	document.getElementById("streamersDiv").appendChild(span);
-}
-
-function addStreamerEmotes(streamerData) {
-	let newEmotes = streamerData.emotes;
-	let emoteNames = [];
-	for (let i = 0; i < newEmotes.length; i++) {
-		emoteNames.push(newEmotes[i].code);
-		localEmotes[newEmotes[i].code] = {
-			"id": newEmotes[i].id
-		}
-	}
-	console.log("Emotes Added: " + emoteNames.join(', '));
-}
