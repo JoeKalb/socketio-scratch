@@ -66,9 +66,10 @@ img {
 .sidenav #leftNavItems {
 	visibility: hidden;
 	padding-left: 5px;
+	padding-right: 5px;
 }
 
-.sidenav h4 {
+.sidenav h4, p {
 	color: #D3D3D3;
 }
 
@@ -92,6 +93,17 @@ img {
 
 #uploadEmote {
 	color: #D3D3D3;
+}
+
+.localEmoteClass {
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	display: flex;
+	flex-direction: row;
+}
+
+.emoteTextClass {
+	padding-top: 10px;
 }
 
 .staticItem {
@@ -166,6 +178,7 @@ img {
 	display: flex;
 	width: 100%;
 }
+
 #setting {
 	border: none;
 	float: left;

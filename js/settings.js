@@ -42,13 +42,6 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 	}
 });
 
-document.getElementById("streamerInput").addEventListener("keypress", function(e){
-	let key = e.which || e.keyCode;
-	if (key === 13 && e.value != "") {
-		findStreamer();
-	}
-});
-
 // Client Settings Functions
 function setName() {
 	user = document.getElementById("nameInput").value;

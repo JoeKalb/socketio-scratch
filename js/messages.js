@@ -7,14 +7,25 @@
 // Emote finding and replacing
 function findEmoteId(check) {
 	if (localEmotes[check]) {
-		let image = document.createElement("IMG");
-		image.src = emoteURL.replace("{image_id}", localEmotes[check].id);
+		let image = imageBuilder(emoteURL.replace("{image_id}", localEmotes[check].id));
+		image.alt = check;
+		image.title = check;
+		return image;
+	}
+	if (localStorage.getItem(check)) {
+		let image = imageBuilder(localStorage.getItem(check));
 		image.alt = check;
 		image.title = check;
 		return image;
 	}
 	let word = document.createTextNode(check + " ");
 	return word;
+}
+
+function imageBuilder(source) {
+	let image = document.createElement("IMG");
+	image.src = source;
+	return image;
 }
 
 function replaceEmotes(text) {
