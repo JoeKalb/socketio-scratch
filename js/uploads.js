@@ -51,7 +51,6 @@ function findStreamer() {
 function addStreamer(data) {
 	for(let i = 0; i < data._total; i++) {
 		createListItem(data.users[i]);
-		getStreamerInfo(data.users[i]._id);
 	}
 }
 
@@ -60,25 +59,23 @@ function createListItem(streamer) {
 	let img = document.createElement("img");
 	let div = document.createElement("div");
 	let a = document.createElement("a");
-	let scroll = document.createElement("div");
-	scroll.className = "scroll";
-	scroll.id = streamer.name + "emoteDisplay";
-	scroll.style.height = "auto";
 	span.id = streamer.name;
 	span.className = "streamersClass";
+	div.style.display = "flex";
 	img.src = streamer.logo;
 	img.title = streamer.display_name;
-	img.style.width = "30%";
+	img.style.width = "100%";
 	img.style.height = "auto";
 	a.href = "https://twitch.tv/" + streamer.name;
 	a.style.color = "white";
 	a.target = "_blank";
 	div.style.paddingLeft = "1px";
+	div.id = streamer.name + 'Div';
 	a.appendChild(img);
 	div.appendChild(a);
-	div.appendChild(scroll);
 	span.appendChild(div);
 	document.getElementById("streamersDiv").appendChild(span);
+	getStreamerInfo(streamer._id);
 }
 
 function addStreamerEmotes(streamerData) {
@@ -91,16 +88,19 @@ function addStreamerEmotes(streamerData) {
 		}
 	}
 	console.log("Emotes Added: " + emoteNames.join(', '));
-	return emoteNames;
+	buildEmoteDiv(emoteNames, streamerData.channel_name);
 }
 
-function displayStreamerEmotes(emoteArray) {
-	let scroll = document.createElement("div");
-	for(let i = 0; i < emoteArray.length; i++) {
-		let img = findEmoteId(emoteArray[i]);
-		scroll.appendChild(img);		
+function buildEmoteDiv(emotesArray, name) {
+	let parent = document.getElementById(name + "Div");
+	let div = document.createElement("div");
+	div.className = "emoteDisplay scroll";
+	for(let i = 0; i < emotesArray.length; i++) {
+		let img = findEmoteId(emotesArray[i]);
+		img.className = "emoteImage"
+		div.appendChild(img);		
 	}
-	return scroll;
+	parent.appendChild(div);
 }
 
 // Uploading new emotes for previewing!!!

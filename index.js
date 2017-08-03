@@ -5,37 +5,48 @@ const path = require('path');
 const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
+const winston = require('winston');
+winston.configure({
+	transports: [
+		new (winston.transports.Console)(),
+		new (winston.transports.File)({ filename: 'somefile.log' })
+	]
+});
 
-// Setting up local cache
+// Setting up local data
 let globals; 
 let broadcasters;
-function getCache() {
+function getData() {
 	co(function *() {
 		let res = yield fetch('https://twitchemotes.com/api_cache/v3/global.json');
 		globals = yield res.json();
-		console.log("Gloabal Emotes Cache Updated");
+		winston.log("info", new Date,  "Gloabal Emotes Updated");
 	});
 	co(function *() {
 		let res = yield fetch('https://twitchemotes.com/api_cache/v3/subscriber.json');
 		broadcasters = yield res.json();
-		console.log("Broadcasters Data Updated");
+		winston.log("info", new Date,  "Broadcasters Data Updated");
 	});
 }
-getCache();
+getData();
+// refresh data every half an hour!
+setInterval(getData, 1.8e6);
 
 app.get('/globals', function(req, res) {
 	if (globals) {
 		res.status(200).json(globals);
+		winston.log("info", new Date, "Global Emotes Sent")
 	} else {
-		console.log("Problem Sending Global Emotes");
+		winston.error("error", new Date,  "Problem Sending Global Emotes");
 		res.send({ "error": "Emote Not Found" });
 	}
 });
 app.get('/broadcaster/:channel_id', function(req, res) {
 	if (broadcasters[req.params.channel_id]) {
 		res.status(200).json(broadcasters[req.params.channel_id]);
+		winston.log("info", new Date, "Broadcaster info sent, ID: ".concat(req.params.channel_id));
 	} else {
-		console.log("Problem finding Broadcaster");
+		winston.error("error", new Date,  "Broadcaster Not Found");
 		res.send({ "error": "Broadcaster not found" });
 	}
 });

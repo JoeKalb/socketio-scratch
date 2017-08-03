@@ -50,6 +50,10 @@ img {
 	vertical-align: bottom;
 }
 
+a {
+	width: 100px;
+}
+
 .sidenav {
 	height: 100%;
 	width: 0;
@@ -169,16 +173,27 @@ img {
 
 }
 
-#streamerDiv {
+.scroll {
+	position: absolute;
+	overflow: auto;
+	height: 100%;
+}
 
+.emoteDisplay{
+	height: 70px;
+	position: relative;
 }
 
 .streamersClass {
 	display: -webkit-flex;
 	display: flex;
+	flex-direction: auto;
 	width: 100%;
 }
 
+.emoteImage {
+	padding-left: 1px;
+}
 #setting {
 	border: none;
 	float: left;
@@ -222,12 +237,6 @@ img {
 	content: '';
 	display: block;
 	clear: both;
-}
-
-.scroll {
-	position: absolute;
-	overflow: auto;
-	height: 100%;
 }
 
 #messages { 
