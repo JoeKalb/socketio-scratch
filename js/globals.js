@@ -3,7 +3,6 @@
 	I'm currently treating this like globals to sit on the top level of the program.
 */
 let headers = new Headers();
-let fs = new FileReader();
 const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
 const twitchEmoteAPI = 'https://twitchemotes.com/api_cache/v3/global.json';
 const twitchUsersURL = 'https://api.twitch.tv/kraken/users?login={name}'

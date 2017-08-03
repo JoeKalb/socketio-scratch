@@ -69,20 +69,55 @@ function addStreamerEmotes(streamerData) {
 	console.log("Emotes Added: " + emoteNames.join(', '));
 }
 
-// Uploading of tester emotes
+
+
+window.onload = function() {
+
+		var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('fileDisplayArea');
+		fileInput.style.color = 'white';
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			var imageType = /image.*/;
+
+			if (file.type.match(imageType)) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					fileDisplayArea.innerHTML = "";
+					var img = new Image();
+					img.src = reader.result;
+					img.id = "emotePreview";
+					fileDisplayArea.appendChild(img);
+					if (img.width != "28" || img.height != "28") {
+						let p = document.createElement("p");
+						p.innerHTML = "Emote will not upload because of size.";
+						fileDisplayArea.appendChild(p);
+					}
+				}
+
+				reader.readAsDataURL(file);	
+			} else {
+				fileDisplayArea.innerHTML = "File not supported!"
+			}
+		});
+
+}
+
 function uploadImage() {
-	let emoteFile = document.getElementById("emoteFile").value;
+	let emoteFile = document.getElementById("emotePreview");
 	let emoteName = document.getElementById("emoteName").value;
-	let stored = storeLocally(emoteName, emoteFile);
-	if (stored) {
-		displayNewEmote(emoteName, emoteFile);
-	} else console.log("Not able to store Image.");
+	if (emoteFile.width == '28' && emoteFile.height == '28') {
+		let stored = storeLocally(emoteName, emoteFile.src);
+		if (stored) {
+			displayNewEmote(emoteName, emoteFile.src);
+		} else console.log("Not able to store Image.");
+	}
 }
 
 function storeLocally(name, file) {
 	if (name != '' && file != '') {
-		let convertedFile = convertImageToBase64(file);
-		localStorage.setItem(name, convertedFile);
+		localStorage.setItem(name, file);
 		return true;
 	} else {
 		return false;
@@ -91,21 +126,14 @@ function storeLocally(name, file) {
 
 function displayNewEmote(name, file) {
 	let div = document.getElementById("emotesDiv");
+	let smallerDiv = document.createElement("div");
 	let img = document.createElement("img");
-	img.src = localStorage.name;
+	let p = document.createElement("p");
+	p.innerHTML = name;
+	p.style.color = "white";
+	img.src = file;
 	img.title = name;
-	div.appendChild(img);
-}
-
-function convertImageToBase64(file) {
-	let canvas = document.createElement("canvas");
-	canvas.width = file.width; //change to 28px later
-	canvas.height = file.height; //change to 28px later
-
-	let ctx = canvas.getContext("2d");
-	ctx.drawImage(file, 0, 0, canvas.width, canvas.height);
-
-	let dataURL = canvas.toDataURL("image/png");
-
-	return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	smallerDiv.appendChild(img);
+	smallerDiv.appendChild(p);
+	div.appendChild(smallerDiv);
 }
