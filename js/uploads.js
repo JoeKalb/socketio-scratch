@@ -19,15 +19,17 @@ document.getElementById("emoteName").addEventListener("keypress", function(e){
 });
 
 function getStreamerData(name) {
-	fetch(twitchUsersURL.replace('{name}', name), {
-		headers: twitchHeaders
-	}).then((res) => {
-		return res.json();
-	}).then((json) => {
-		addStreamer(json);
-	}).catch((err) => {
-		console.log(err);
-	})
+	if (!addedStreamers.includes(name)) {
+		fetch(twitchUsersURL.replace('{name}', name), {
+			headers: twitchHeaders
+		}).then((res) => {
+			return res.json();
+		}).then((json) => {
+			addStreamer(json);
+		}).catch((err) => {
+			console.log(err);
+		})
+	}
 }
 
 function getStreamerInfo(id) {
@@ -43,14 +45,15 @@ function getStreamerInfo(id) {
 function findStreamer() {
 	let streamer = document.getElementById("streamerInput").value;
 	streamer = streamer.trim();
-	streamer = streamer.split(' ').join('');
-	getStreamerData(streamer);
+	streamer = streamer.split(' ').join('').toLowerCase();
+	if (!addedStreamers.includes(streamer)) socket.emit("add emotes", streamer);
 	document.getElementById("streamerInput").value = '';
 }
 
 function addStreamer(data) {
 	for(let i = 0; i < data._total; i++) {
 		createListItem(data.users[i]);
+		addedStreamers.push(data.users[i].name);
 	}
 }
 

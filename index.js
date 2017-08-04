@@ -6,10 +6,21 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
+
+// logging configuration
 winston.configure({
 	transports: [
 		new (winston.transports.Console)(),
-		new (winston.transports.File)({ filename: 'somefile.log' })
+		new (winston.transports.File)({ 
+			filename: 'info-file.log',
+			name: 'info-file',
+			level: 'info' 
+		}),
+		new (winston.transports.File)({
+			filename: 'error-file.log',
+			name: 'error-file',
+			level: 'error'
+		})
 	]
 });
 
@@ -20,12 +31,12 @@ function getData() {
 	co(function *() {
 		let res = yield fetch('https://twitchemotes.com/api_cache/v3/global.json');
 		globals = yield res.json();
-		winston.log("info", new Date,  "Gloabal Emotes Updated");
+		winston.log("info", "Gloabal Emotes Updated");
 	});
 	co(function *() {
 		let res = yield fetch('https://twitchemotes.com/api_cache/v3/subscriber.json');
 		broadcasters = yield res.json();
-		winston.log("info", new Date,  "Broadcasters Data Updated");
+		winston.log("info", "Broadcasters Data Updated");
 	});
 }
 getData();
@@ -35,18 +46,18 @@ setInterval(getData, 1.8e6);
 app.get('/globals', function(req, res) {
 	if (globals) {
 		res.status(200).json(globals);
-		winston.log("info", new Date, "Global Emotes Sent")
+		winston.log("info", "Global Emotes Sent")
 	} else {
-		winston.error("error", new Date,  "Problem Sending Global Emotes");
+		winston.error("error", "Problem Sending Global Emotes");
 		res.send({ "error": "Emote Not Found" });
 	}
 });
 app.get('/broadcaster/:channel_id', function(req, res) {
 	if (broadcasters[req.params.channel_id]) {
 		res.status(200).json(broadcasters[req.params.channel_id]);
-		winston.log("info", new Date, "Broadcaster info sent, ID: ".concat(req.params.channel_id));
+		winston.log("info", "Broadcaster info sent ID: ".concat(req.params.channel_id));
 	} else {
-		winston.error("error", new Date,  "Broadcaster Not Found");
+		winston.error("error", "Broadcaster Not Found");
 		res.send({ "error": "Broadcaster not found" });
 	}
 });
@@ -65,8 +76,12 @@ io.on('connection', function(socket) {
 
 	socket.broadcast.emit('broadcast', "New User Connected PogChamp");
 	
-	socket.on('chat message', function(message) {
+	socket.on('chat message', (message) => {
 		io.emit('chat message', message);
+	});
+
+	socket.on('add emotes', (streamer) => {
+		io.emit('add emotes', streamer);
 	});
 
 	socket.on('disconnect', () => {

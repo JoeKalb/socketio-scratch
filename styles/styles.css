@@ -206,8 +206,10 @@ a {
 }
 
 .emoteImage {
-	padding-left: 1px;
+	padding-left: 3px;
+	padding-bottom: 3px;
 }
+
 #setting {
 	border: none;
 	float: left;
