@@ -40,7 +40,7 @@ function replaceEmotes(text) {
 // Sending functions
 function sendMessage() {
 	if (user === "") {
-		toggleSetting();
+		toggleMenu("settingsDiv");
 		// check if textarea have something written
 		if (document.getElementById("m").value != "") hasText = true;
 		return false;
@@ -103,4 +103,3 @@ function appendTime(currentTime) {
 	timeSpan.innerHTML = currentTime + " ";
 	return timeSpan;
 }
-

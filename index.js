@@ -72,20 +72,22 @@ app.get('/', function(req, res) {
 });
 
 // Setting up app sockets
-io.on('connection', function(socket) {
+
+let nameSpace = io.of('/artistName');
+nameSpace.on('connection', function(socket) {
 
 	socket.broadcast.emit('broadcast', "New User Connected PogChamp");
 	
 	socket.on('chat message', (message) => {
-		io.emit('chat message', message);
+		nameSpace.emit('chat message', message);
 	});
 
 	socket.on('add emotes', (streamer) => {
-		io.emit('add emotes', streamer);
+		nameSpace.emit('add emotes', streamer);
 	});
 
 	socket.on('disconnect', () => {
-		io.emit('disconnect', 'User Has Disconnected BibleThump');
+		nameSpace.emit('disconnect', 'User Has Disconnected BibleThump');
 	});
 });
 
