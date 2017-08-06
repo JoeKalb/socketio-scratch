@@ -89,17 +89,23 @@ a {
 
 .sidenav h4, p {
 	color: #D3D3D3;
+
 }
 
 .sidenav button i {
 	border: none;
+	border-radius: 2px;
+	background-color: #D3D3D3;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-top: 1px; 
 }
 
 .sidenav #closeBtn {
 	position: absolute;
 	top: 0;
 	right: 30px;
-	margin-left: 50px
+	margin-left: 50px;
 }
 
 
@@ -108,7 +114,7 @@ a {
 	border-radius: 1px;
 	border: none;
 }
-105
+
 #uploadEmote {
 	color: #D3D3D3;
 }

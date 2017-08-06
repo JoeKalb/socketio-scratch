@@ -5,19 +5,14 @@
 let headers = new Headers();
 const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
 const twitchEmoteAPI = 'https://twitchemotes.com/api_cache/v3/global.json';
-const twitchUsersURL = 'https://api.twitch.tv/kraken/users?login={name}'
-const socket = connect('/artistName');
+const twitchUsersURL = 'https://api.twitch.tv/kraken/users?login={name}';
 const twitchHeaders = new Headers({
 	'Accept': 'application/vnd.twitchtv.v5+json',
 	'Client-ID': 'qu40xwrhqo12kl3g3isdqcma9rma8n'
 });
 
-function connect(name) {
-	return io(name);
-}
-
 let list = document.getElementById("messages");
-let user = "";
+let user = "Default Name";
 let userColor = "blue";
 let date;
 let hasText = false;

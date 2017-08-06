@@ -15,6 +15,14 @@
     <div id="leftNav" class="sidenav" >
       <div id="leftNavItems" class="scroll">
         <button onclick="closeSideBar()"><i>Close</i></button>
+        <div id="nameSpace">
+          <h4>Name Space:</h4>
+          <input type="text" placeholder="Join or Create Name Space" id="nameSpaceInput">
+          <button onclick='connectToNameSpace()' class="sideBtnClass">
+            <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <br>
         <div id="streamersDiv" class="nonStatic">
           <h4>Add Streamer Emotes: </h4>
           <input type="text" placeholder="Search Streamer" id="streamerInput">
@@ -26,7 +34,6 @@
         <div id="emotesDiv" class="nonStatic">
           <h4>Test New Emotes: </h4>
           <p>These emotes are stored locally, so others won't be able to see them!</p>
-          <br>
           <input type="file" id="fileInput"/>
           <div id="fileDisplayArea"></div>
           <br>

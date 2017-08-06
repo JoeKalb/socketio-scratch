@@ -190,3 +190,6 @@ function checkForPreviousUploads() {
 }
 
 checkForPreviousUploads();
+
+// open sidename initially for testing
+openSideBar();
