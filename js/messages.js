@@ -12,8 +12,8 @@ function findEmoteId(check) {
 		image.title = check;
 		return image;
 	}
-	if (localStorage.getItem(check)) {
-		let image = imageBuilder(localStorage.getItem(check));
+	if (sessionStorage.getItem(check)) {
+		let image = imageBuilder(sessionStorage.getItem(check));
 		image.alt = check;
 		image.title = check;
 		return image;

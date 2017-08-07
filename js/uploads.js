@@ -145,7 +145,7 @@ function uploadImage() {
 	let emoteFile = document.getElementById("emotePreview");
 	let emoteName = document.getElementById("emoteName").value;
 	if (emoteFile.width == '28' && emoteFile.height == '28') {
-		let stored = storeLocally(emoteName, emoteFile.src);
+		let stored = socket.emit('add session emote', emoteName, emoteFile.src);
 		if (stored) {
 			displayNewEmote(emoteName, emoteFile.src);
 			document.getElementById("fileInput").value = '';
@@ -157,7 +157,7 @@ function uploadImage() {
 
 function storeLocally(name, file) {
 	if (name != '' && file != '') {
-		localStorage.setItem(name, file);
+		sessionStorage.setItem(name, file);
 		return true;
 	} else {
 		return false;
@@ -181,10 +181,10 @@ function displayNewEmote(name, file) {
 }
 
 function checkForPreviousUploads() {
-	if (localStorage.length != 0) {
-		for (let i = 0; i < localStorage.length; i++) {
-			let key = localStorage.key(i);
-			displayNewEmote(key, localStorage.getItem(key));
+	if (sessionStorage.length != 0) {
+		for (let i = 0; i < sessionStorage.length; i++) {
+			let key = sessionStorage.key(i);
+			displayNewEmote(key, sessionStorage.getItem(key));
 		}
 	}
 }

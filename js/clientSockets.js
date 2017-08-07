@@ -1,6 +1,6 @@
 /*
 	Pulled appart the sockets from the messages.js since I'll end up using
-	more than just messaging 
+	more than just messaging with the sockets
 */
 
 let socket;
@@ -39,6 +39,10 @@ function connect(name) {
 	socket.on('add emotes', (streamer) => {
 		getStreamerData(streamer);
 	});
+
+	socket.on('add session emote', (name, file) => {
+		storeLocally(name, file);
+	});
 }
 
-connect("");
+connect("potato");

@@ -72,24 +72,40 @@ app.get('/', function(req, res) {
 });
 
 // Setting up app sockets
-let nameSpaces = ['artistName', '/'];
+let nameSpaces = ['artistName', '', 'potato'];
 
-io.sockets.on('connection', (socket) => {
+// creating current namespaces build
+for (let i in nameSpaces) {
+	addNameSpace(nameSpaces[i]);
+}
 
-	socket.broadcast.emit('broadcast', "New User Connected PogChamp");
-	
-	socket.on('chat message', (message) => {
-		io.emit('chat message', message);
+// adding function for building new namespaces
+function addNameSpace(name) {
+	let ns = io.of("/" + name);
+
+	ns.on('connection', (socket) => {
+
+		socket.broadcast.emit('broadcast', "New User Connected PogChamp");
+		
+		socket.on('chat message', (message) => {
+			ns.emit('chat message', message);
+		});
+
+		socket.on('add emotes', (streamer) => {
+			ns.emit('add emotes', streamer);
+		});
+
+		socket.on('add session emote', (name, file) => {
+			ns.emit('add session emote', name, file);
+		});
+
+		socket.on('disconnect', () => {
+			ns.emit('disconnect', 'User Has Disconnected BibleThump');
+		});
 	});
+}
 
-	socket.on('add emotes', (streamer) => {
-		io.emit('add emotes', streamer);
-	});
-
-	socket.on('disconnect', () => {
-		io.emit('disconnect', 'User Has Disconnected BibleThump');
-	});
-});
+// add route checker and adder 
 
 http.listen(3000, function() {
 	console.log("listening on *:3000");
