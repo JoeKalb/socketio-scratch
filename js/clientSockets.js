@@ -40,3 +40,5 @@ function connect(name) {
 		getStreamerData(streamer);
 	});
 }
+
+connect("");
