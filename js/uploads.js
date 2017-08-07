@@ -147,7 +147,6 @@ function uploadImage() {
 	if (emoteFile.width == '28' && emoteFile.height == '28') {
 		let stored = socket.emit('add session emote', emoteName, emoteFile.src);
 		if (stored) {
-			displayNewEmote(emoteName, emoteFile.src);
 			document.getElementById("fileInput").value = '';
 			document.getElementById("emoteName").value = '';
 			emoteFile.remove();
@@ -158,6 +157,7 @@ function uploadImage() {
 function storeLocally(name, file) {
 	if (name != '' && file != '') {
 		sessionStorage.setItem(name, file);
+		displayNewEmote(name, file);
 		return true;
 	} else {
 		return false;
