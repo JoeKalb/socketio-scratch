@@ -18,28 +18,24 @@ document.getElementById("emoteName").addEventListener("keypress", function(e){
 	}
 });
 
-function getStreamerData(name) {
-	if (!addedStreamers.includes(name)) {
-		fetch(twitchUsersURL.replace('{name}', name), {
-			headers: twitchHeaders
-		}).then((res) => {
-			return res.json();
-		}).then((json) => {
-			addStreamer(json);
-		}).catch((err) => {
-			console.log(err);
-		})
+async function getStreamerData(name) {
+	if(!addedStreamers.includes(name)){
+		let response = await fetch(twitchUsersURL.replace('{name}', name), { headers: twitchHeaders });
+		let json = await response.json();
+		addStreamer(json);
+	}else{
+		console.log(name + " not found.");
 	}
 }
 
-function getStreamerInfo(id) {
-	fetch(location + 'broadcaster/' + id).then((res) => {
-		return res.json();
-	}).then((json) => {
+async function getStreamerInfo(id) {
+	try{
+		let response = await fetch(location + 'broadcaster/' + id);
+		let json = await response.json();
 		addStreamerEmotes(json);
-	}).catch((err) => {
-		console.log(err);
-	})
+	}catch(err){
+		console.log("There was an error: " + err);
+	}
 }
 
 function findStreamer() {
