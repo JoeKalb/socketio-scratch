@@ -45,4 +45,5 @@ function connect(name) {
 	});
 }
 
-connect("potato");
+// This will later connect to the artist name and the room will be the streamer
+connect("artistName");

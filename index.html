@@ -24,6 +24,14 @@
           </button>
         </div>
         -->
+        <div id="nameDiv" class="nonStatic">
+          <h4>Set Name: </h4>
+          <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
+          <button onclick='setName()' class="sideBtnClass">
+            <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+          </button>
+          <br>
+        </div>
         <br>
         <div id="streamersDiv" class="nonStatic">
           <h4>Add Streamer Emotes: </h4>
@@ -64,11 +72,6 @@
       <button id="setting" onclick="toggleMenu('settingsDiv')" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></button>
       <!-- Settings -->
       <div id="settingsDiv" class="staticItem popUp">
-        <label for="nameInput" class="settingsLabel">Set Username: </label>
-        <br>
-        <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
-        <br>
-        <br>
         <label for="iconChoices" class="settingsLabel">Select Icon:</label>
         <div id="iconChoices">
           <button onclick="setIcon('fa fa-rebel')"><i id="rebel" class="fa fa-rebel fa-lg"></i></button>
