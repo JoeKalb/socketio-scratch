@@ -97,7 +97,7 @@ function buildEmoteDiv(emotesArray, name) {
 	for(let i = 0; i < emotesArray.length; i++) {
 		let img = findEmoteId(emotesArray[i]);
 		img.className = "emoteImage"
-		div.appendChild(img);		
+		div.appendChild(img);
 	}
 	parent.appendChild(div);
 }
@@ -130,7 +130,7 @@ window.onload = function() {
 				}
 			}
 
-			reader.readAsDataURL(file);	
+			reader.readAsDataURL(file);
 		} else {
 			fileDisplayArea.innerHTML = "File not supported!"
 		}
@@ -184,6 +184,7 @@ function checkForPreviousUploads() {
 		}
 	}
 }
+
 
 checkForPreviousUploads();
 
