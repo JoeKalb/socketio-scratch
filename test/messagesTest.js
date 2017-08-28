@@ -1,9 +1,12 @@
+const polyfill = require("babel-polyfill");
 const assert = require('chai').assert;
+//const messages = require('../js/uploads');
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
+let messagesResult;
+describe('messages', function() {
+  describe('findEmoteId', function() {
+    it('should return an image object', function() {
+      assert.equal(messagesResult, undefined);
     });
   });
 });
