@@ -8,3 +8,9 @@ const dom = new JSDOM('<!DOCTYPE html><html><head></head><body><div class="foo">
 
 global.window = dom.window;
 global.document = dom.window.document;
+
+describe('messages.js', () => {
+  it('check that value returns itselt with a space', () => {
+    assert(findEmoteId('keepo'), 'keepo ');
+  })
+})
