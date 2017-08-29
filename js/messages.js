@@ -105,4 +105,8 @@ function appendTime(currentTime) {
 }
 
 // exports for testing
-module.exports = { imageBuilder }
+
+// module.exports = {
+// 	appendName,
+// 	imageBuilder
+// }
