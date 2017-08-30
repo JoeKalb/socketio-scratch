@@ -10,7 +10,7 @@ global.window = dom.window;
 global.document = dom.window.document;
 
 const image = new JSDOM('<image src="stuff"></image>');
-const span = new JSDOM('<span class="nameClass" id="nameId" style="color:blue"> Joe: </span>');
+const span = new JSDOM('<span class="nameClass" id="nameId" style.color="blue"> Joe: </span>');
 
 describe('messages.js', () => {
   it('imageBuilder should return an image object', () => {
@@ -25,4 +25,12 @@ describe('messages.js', () => {
   it('appendName should be a span', () => {
     assert(messages.appendName('Joe', 'blue'), span);
   })
+
+  it('appendName should be a span have innerHTML of \' Joe: \'', () => {
+    assert(messages.appendName('Joe', 'blue').innerHTML, span.innerHTML);
+  })
+
+  // it('appendName should be a span having style color of blue', () => {
+  //   assert(messages.appendName('Joe', 'blue').style.color, span.style.color);
+  // })
 })
