@@ -2,34 +2,34 @@
 html {
 	height: 100%;
 }
-body { 
-	font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+body {
+	font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	width: 100%;
 	height: 100%;
 	word-wrap: break-word;
 	background-color: white;
 	overflow: hidden;
 }
-div { 
-	width: 100%; 
+div {
+	width: 100%;
 }
-div textarea { 
-	border: 0; 
-	padding: 10px; 
-	width: 100%; 
+div textarea {
+	border: 0;
+	padding: 10px;
+	width: 100%;
 	height: 50px;
 	margin-right: .5%;
 	background-color: "white";
-	color: "black"; 
+	color: "black";
 }
-div #chat { 
-	width: 45px; 
+div #chat {
+	width: 45px;
 	height: 30px;
-	color: white; 
-	background: rgb(100, 65, 164); 
+	color: white;
+	background: rgb(100, 65, 164);
 	border: none;
 	padding: .5%;
-	float: right; 
+	float: right;
 	margin-top: 1px;
 	text-align: center;
 }
@@ -43,6 +43,8 @@ button i {
 img {
 	padding-top: 0px;
 	padding-bottom: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	position:relative;
@@ -98,7 +100,7 @@ a {
 	background-color: #D3D3D3;
 	padding-right: 2px;
 	padding-left: 2px;
-	padding-top: 1px; 
+	padding-top: 1px;
 }
 
 .sidenav #closeBtn {
@@ -177,7 +179,7 @@ a {
 	position: absolute;
 	border: 1px solid rgb(100, 65, 164);
 	height: auto;
-	width: auto; 
+	width: auto;
 	display:none;
 	margin-left: 3px;
 	margin-right: 0px;
@@ -239,7 +241,7 @@ a {
 }
 
 #nameInput {
-	
+
 }
 
 #chatContainer {
@@ -254,14 +256,14 @@ a {
 	clear: both;
 }
 
-#messages { 
-	list-style-type: none; 
-	margin: 0; 
+#messages {
+	list-style-type: none;
+	margin: 0;
 	padding: 0;
 	position: absolute;
 }
-#messages li { 
-	padding: 0px 10px 0px 10px; 
+#messages li {
+	padding: 0px 10px 0px 10px;
 	margin-bottom: 3px;
 }
 
