@@ -103,3 +103,10 @@ function appendTime(currentTime) {
 	timeSpan.innerHTML = currentTime + " ";
 	return timeSpan;
 }
+
+// exports for testing
+
+// module.exports = {
+// 	appendName,
+// 	imageBuilder
+// }
