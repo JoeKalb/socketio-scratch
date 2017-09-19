@@ -43,6 +43,10 @@ function connect(name) {
 	socket.on('add session emote', (name, file) => {
 		storeLocally(name, file);
 	});
+
+	socket.on('remove session emote', (name) => {
+		removeLocally(name);
+	});
 }
 
 // This will later connect to the artist name and the room will be the streamer

@@ -160,19 +160,33 @@ function storeLocally(name, file) {
 	}
 }
 
+function removeLocally(name) {
+	if(sessionStorage.getItem(name)){
+		sessionStorage.removeItem(name);
+		parent = document.getElementById("emotesDiv");
+		targetDiv = document.getElementById("localEmoteID:"+name);
+		parent.removeChild(targetDiv);
+	}
+}
+
 function displayNewEmote(name, file) {
 	let div = document.getElementById("emotesDiv");
 	let smallerDiv = document.createElement("div");
 	let img = document.createElement("img");
 	let p = document.createElement("p");
+	let button = document.createElement("button");
 	p.innerHTML = name;
 	p.style.color = "white";
 	p.className = "emoteTextClass";
 	img.src = file;
 	img.title = name;
+	button.className = "localDeleteEmoteBtn fa fa-trash-o fa-2x";
+	button.onclick = function() { socket.emit('remove session emote', name); }
 	smallerDiv.className = "localEmoteClass";
+	smallerDiv.id = "localEmoteID:" + name;
 	smallerDiv.appendChild(img);
 	smallerDiv.appendChild(p);
+	smallerDiv.appendChild(button);
 	div.appendChild(smallerDiv);
 }
 

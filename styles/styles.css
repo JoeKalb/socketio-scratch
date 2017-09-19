@@ -126,10 +126,31 @@ a {
 	-webkit-flex-direction: row;
 	display: flex;
 	flex-direction: row;
+	width: 195px;
+}
+
+.localEmoteClass img {
+	width: 28px;
+	height: 28px;
+}
+
+.localEmoteClass p {
+	vertical-align: text-bottom;
 }
 
 .emoteTextClass {
 	padding-top: 10px;
+}
+
+.localDeleteEmoteBtn {
+	position: absolute;
+	background-color: red;
+	border: none;
+	border-radius: 2px;
+	height:25px;
+	width: 25px;
+	margin-top: 5px;
+	left: 153px;
 }
 
 .staticItem {

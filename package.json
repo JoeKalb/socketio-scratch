@@ -4,7 +4,8 @@
   "description": "socetio testing",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --compilers js:babel-core/register ./test/*.js || true"
+    "test": "mocha --compilers js:babel-core/register ./test/*.js || true",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "co": "^4.6.0",

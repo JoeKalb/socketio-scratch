@@ -11,10 +11,10 @@ const winston = require('winston');
 winston.configure({
 	transports: [
 		new (winston.transports.Console)(),
-		new (winston.transports.File)({ 
+		new (winston.transports.File)({
 			filename: 'info-file.log',
 			name: 'info-file',
-			level: 'info' 
+			level: 'info'
 		}),
 		new (winston.transports.File)({
 			filename: 'error-file.log',
@@ -25,7 +25,7 @@ winston.configure({
 });
 
 // Setting up local data
-let globals; 
+let globals;
 let broadcasters;
 function getData() {
 	co(function *() {
@@ -86,7 +86,7 @@ function addNameSpace(name) {
 	ns.on('connection', (socket) => {
 
 		socket.broadcast.emit('broadcast', "New User Connected PogChamp");
-		
+
 		socket.on('chat message', (message) => {
 			ns.emit('chat message', message);
 		});
@@ -99,13 +99,17 @@ function addNameSpace(name) {
 			ns.emit('add session emote', name, file);
 		});
 
+		socket.on('remove session emote', (name) => {
+			ns.emit('remove session emote', name);
+		})
+
 		socket.on('disconnect', () => {
 			ns.emit('disconnect', 'User Has Disconnected BibleThump');
 		});
 	});
 }
 
-// add route checker and adder 
+// add route checker and adder
 
 http.listen(3000, function() {
 	console.log("listening on *:3000");
