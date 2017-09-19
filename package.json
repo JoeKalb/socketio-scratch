@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "socetio testing",
   "scripts": {
-    "dev": "node index.js",
+    "start": "node index.js",
     "test": "mocha --compilers js:babel-core/register ./test/*.js || true"
   },
   "dependencies": {
