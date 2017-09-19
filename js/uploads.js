@@ -181,7 +181,7 @@ function displayNewEmote(name, file) {
 	img.src = file;
 	img.title = name;
 	button.className = "localDeleteEmoteBtn fa fa-trash-o fa-2x";
-	button.onclick = function() { socket.emit('remove session emote', name); }
+	button.onclick = () => { socket.emit('remove session emote', name); }
 	smallerDiv.className = "localEmoteClass";
 	smallerDiv.id = "localEmoteID:" + name;
 	smallerDiv.appendChild(img);
