@@ -71,7 +71,7 @@ a {
 }
 
 .sidenav {
-	height: 100%;
+	height: calc(100% - 90px);
 	width: 0;
 	position: fixed;
 	z-index: 5;
@@ -86,7 +86,7 @@ a {
 .sidenav #leftNavItems {
 	visibility: hidden;
 	padding-left: 5px;
-	padding-right: 5px;
+	padding-right: 0px;
 }
 
 .sidenav h4, p {
@@ -212,13 +212,14 @@ a {
 	top: 27px;
 	left: 5px;
 	position: relative;
-	width: 250px;
+	width: 230px;
 
 }
 
 .scroll {
 	position: absolute;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 	height: 100%;
 }
 

@@ -31,6 +31,7 @@ async function getStreamerData(name) {
 async function getStreamerInfo(id) {
 	try{
 		let response = await fetch(location + 'broadcaster/' + id);
+		console.log(response);
 		let json = await response.json();
 		addStreamerEmotes(json);
 	}catch(err){
@@ -74,6 +75,7 @@ function createListItem(streamer) {
 	div.appendChild(a);
 	span.appendChild(div);
 	document.getElementById("streamersDiv").appendChild(span);
+	console.log(streamer._id);
 	getStreamerInfo(streamer._id);
 }
 
@@ -96,7 +98,8 @@ function buildEmoteDiv(emotesArray, name) {
 	div.className = "emoteDisplay scroll";
 	for(let i = 0; i < emotesArray.length; i++) {
 		let img = findEmoteId(emotesArray[i]);
-		img.className = "emoteImage"
+		img.className = "emoteImage";
+		img.onclick = () => {addEmoteToMessage(emotesArray[i]);}
 		div.appendChild(img);
 	}
 	parent.appendChild(div);

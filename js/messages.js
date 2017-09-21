@@ -104,6 +104,17 @@ function appendTime(currentTime) {
 	return timeSpan;
 }
 
+function addEmoteToMessage(emoteName) {
+	//console.log(hasText);
+	hasText = true;
+	if (document.getElementById('m').value == "") {
+		document.getElementById('m').value = "";
+		document.getElementById('m').value += emoteName + " ";
+	} else {
+		console.log("what");
+	}
+}
+
 // exports for testing
 
 // module.exports = {
