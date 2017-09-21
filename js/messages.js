@@ -105,13 +105,12 @@ function appendTime(currentTime) {
 }
 
 function addEmoteToMessage(emoteName) {
-	//console.log(hasText);
-	hasText = true;
-	if (document.getElementById('m').value == "") {
+	if (!hasText) {
+		hasText = true;
 		document.getElementById('m').value = "";
-		document.getElementById('m').value += emoteName + " ";
+		document.getElementById('m').value = emoteName + " ";
 	} else {
-		console.log("what");
+		document.getElementById('m').value += " " + emoteName + " ";
 	}
 }
 
