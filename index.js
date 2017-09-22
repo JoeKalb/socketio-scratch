@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
-const CONFIG =  require('./config.js');
+const {CONFIG} = require('./config');
 
 // logging configuration
 winston.configure({
@@ -61,6 +61,26 @@ app.get('/broadcaster/:channel_id', function(req, res) {
 		winston.error("error", "Broadcaster Not Found");
 		res.send({ "error": "Broadcaster not found" });
 	}
+});
+
+// Making twitch OAUTH calls
+const TWITCHOAUTH = "https://api.twitch.tv/api/oauth2/token?client_id=<your client ID>&client_secret=<your client secret>&code=<authorization code received above>&grant_type=authorization_code&redirect_uri=<your registered redirect URI>"
+	.replace("<your client ID>", CONFIG.CLIENT_ID)
+	.replace("<your client secret>", CONFIG.CLIENT_SECRET)
+	.replace("<your registered redirect URI>", CONFIG.REDIRECT_URI);
+app.get('/login/:code', function(req, res) {
+	let twitchCall = TWITCHOAUTH.replace("<authorization code received above>", req.params.code);
+	co(function *() {
+		let twitchPromise = yield fetch(twitchCall, {
+			method: 'post'
+		});
+		let twitchInfo = yield twitchPromise.json();
+		try {
+			res.send({"success": twitchInfo});
+		} catch(err) {
+			res.error({"THERE WAS AN ERROR": err});
+		}
+	});
 });
 
 // Setting up app front end
