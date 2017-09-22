@@ -6,15 +6,15 @@
 // get initial emotes from twitch emotes api
 function getJson(urlValue) {
 	return fetch(urlValue).then((res) => {
-		if (res.ok) return res.json(); 
+		if (res.ok) return res.json();
 		else reject(new Error('error'));
 	}, error => {
 		reject(new Error(error.message))
 	})
 }
 
-getJson(location + 'globals').then((res) => { 
-	localEmotes = res; 
+getJson(location + 'globals').then((res) => {
+	localEmotes = res;
 });
 
 // initial document setting
@@ -24,7 +24,7 @@ document.getElementById("currentIcon").style.color = iconColor;
 // needs to run once so it only needs one click to work on initial load
 toggleMenu("settingsDiv");
 toggleDarkMode();
- 
+
 // Event Listeners
 document.getElementById("m").addEventListener("keypress", function(e){
 	let key = e.which || e.keyCode;
@@ -44,6 +44,10 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 // Client Settings Functions
 function setName() {
 	user = document.getElementById("nameInput").value;
+	nameInput = document.getElementById("nameInput");
+	i = document.createElement("i");
+	i.class = "fa fa-check fa-lg";
+	nameInput.appendChild(i);
 }
 
 function setIcon(icon) {
@@ -128,14 +132,15 @@ function toggleMenu(id) {
 function openSideBar() {
 	document.getElementById("leftNav").style.width = "250px";
 	document.getElementById("leftNavItems").style.visibility = "visible";
+	document.getElementById("chatContainer").style.left = "250px";
 }
 
 function closeSideBar() {
 	document.getElementById("leftNav").style.width = "0";
 	document.getElementById("leftNavItems").style.visibility = "hidden";
+	document.getElementById("chatContainer").style.left = "0px";
 }
 
 function clearContents(element) {
-	if (!hasText) element.value = '';	
+	if (!hasText) element.value = '';
 }
-

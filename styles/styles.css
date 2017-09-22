@@ -74,7 +74,7 @@ a {
 	height: calc(100% - 90.5px);
 	width: 0;
 	position: fixed;
-	z-index: 5;
+	z-index: 1;
 	top: 0;
 	left: 0;
 	background-color: rgba(17, 17, 17, .9);
@@ -150,7 +150,7 @@ a {
 	height:25px;
 	width: 25px;
 	margin-top: 5px;
-	left: 153px;
+	left: 140px;
 }
 
 .staticItem {
@@ -205,7 +205,7 @@ a {
 	margin-left: 3px;
 	margin-right: 0px;
 	padding-left: 3px;
-	z-index: 1;
+	z-index: 10;
 }
 
 #addItemsMenu {
@@ -262,8 +262,8 @@ a {
 	color: white;
 }
 
-#nameInput {
-
+#nameDiv i {
+	position: relative;
 }
 
 #chatContainer {
