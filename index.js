@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
+import { CONFIG } from './config.js';
 
 // logging configuration
 winston.configure({
@@ -101,7 +102,7 @@ function addNameSpace(name) {
 
 		socket.on('remove session emote', (name) => {
 			ns.emit('remove session emote', name);
-		})
+		});
 
 		socket.on('disconnect', () => {
 			ns.emit('disconnect', 'User Has Disconnected BibleThump');

@@ -2,6 +2,7 @@
 html {
 	height: 100%;
 }
+
 body {
 	font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	width: 100%;
@@ -10,9 +11,11 @@ body {
 	background-color: white;
 	overflow: hidden;
 }
+
 div {
 	width: 100%;
 }
+
 div textarea {
 	border: 0;
 	padding: 10px;
@@ -22,6 +25,7 @@ div textarea {
 	background-color: "white";
 	color: "black";
 }
+
 div #chat {
 	width: 45px;
 	height: 30px;
@@ -37,9 +41,11 @@ div #chat {
 button {
 	cursor: pointer;
 }
+
 button i {
 	color: rgb(100, 65, 164);
 }
+
 img {
 	padding-top: 0px;
 	padding-bottom: 0px;
@@ -91,13 +97,22 @@ a {
 
 .sidenav h4, p {
 	color: #D3D3D3;
-
 }
 
 .sidenav button i {
 	border: none;
 	border-radius: 2px;
 	background-color: #D3D3D3;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-top: 1px;
+}
+
+.sidenav a i {
+	border: none;
+	border-radius: 2px;
+	background-color: rgb(100, 65, 164);
+	color: #D3D3D3;
 	padding-right: 2px;
 	padding-left: 2px;
 	padding-top: 1px;
@@ -127,11 +142,13 @@ a {
 	display: flex;
 	flex-direction: row;
 	width: 195px;
+	height: auto;
+	padding-bottom: 10px;
 }
 
 .localEmoteClass img {
-	width: 28px;
-	height: 28px;
+	height: auto;
+	width: auto;
 }
 
 .localEmoteClass p {
@@ -139,7 +156,7 @@ a {
 }
 
 .emoteTextClass {
-	padding-top: 10px;
+	padding-top: 7px;
 }
 
 .localDeleteEmoteBtn {
@@ -147,8 +164,8 @@ a {
 	background-color: red;
 	border: none;
 	border-radius: 2px;
-	height:25px;
-	width: 25px;
+	height: auto;
+	width: auto;
 	margin-top: 5px;
 	left: 140px;
 }
@@ -213,7 +230,6 @@ a {
 	left: 5px;
 	position: relative;
 	width: 230px;
-
 }
 
 .scroll {

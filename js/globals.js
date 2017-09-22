@@ -8,7 +8,7 @@ const twitchEmoteAPI = 'https://twitchemotes.com/api_cache/v3/global.json';
 const twitchUsersURL = 'https://api.twitch.tv/kraken/users?login={name}';
 const twitchHeaders = new Headers({
 	'Accept': 'application/vnd.twitchtv.v5+json',
-	'Client-ID': 'qu40xwrhqo12kl3g3isdqcma9rma8n'
+	'Client-ID': 'swy6o3hxxnevxwuwu0vrlah2dm1io9'
 });
 
 let list = document.getElementById("messages");
