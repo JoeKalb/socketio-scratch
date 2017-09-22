@@ -45,9 +45,6 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 function setName() {
 	user = document.getElementById("nameInput").value;
 	nameInput = document.getElementById("nameInput");
-	i = document.createElement("i");
-	i.class = "fa fa-check fa-lg";
-	nameInput.appendChild(i);
 }
 
 function setIcon(icon) {

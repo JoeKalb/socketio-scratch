@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
-import { CONFIG } from './config.js';
+const CONFIG =  require('./config.js');
 
 // logging configuration
 winston.configure({
