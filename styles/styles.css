@@ -223,6 +223,10 @@ a {
 	height: 100%;
 }
 
+#leftNavItems {
+	height: auto;
+}
+
 .emoteDisplay{
 	height: 70px;
 	position: relative;
@@ -344,7 +348,8 @@ a {
 #darkMode {
 	float: left;
 	position: relative;
-	padding-top: 3px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .switch {

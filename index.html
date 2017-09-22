@@ -16,6 +16,13 @@
     <div id="leftNav" class="sidenav" >
       <div id="leftNavItems" class="scroll">
         <button onclick="closeSideBar()"><i>Close</i></button>
+				<div id="darkMode" class="nonStatic">
+          <h4 id="darkModeLabel" class="">Dark Mode: </h4>
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode()">
+            <span class="slider round"></span>
+          </label>
+        </div>
         <!--
         <div id="nameSpace">
           <h4>Name Space:</h4>
@@ -99,13 +106,6 @@
           <button class="colorButton" onclick='setNameColor("green")' style="background-color: green;"></button>
           <button class="colorButton" onclick='setNameColor("yellow")' style="background-color: yellow;"></button>
           <button class="colorButton" onclick='setNameColor("cyan")' style="background-color: cyan;"></button>
-        </div>
-        <div id="darkMode">
-          <label id="darkModeLabel" class="settingsLabel">Dark Mode: </label>
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode()">
-            <span class="slider round"></span>
-          </label>
         </div>
         <div id="timeStamp">
           <label id="timeStampLabel" class="settingsLabel">Show Time: </label>

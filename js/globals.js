@@ -13,7 +13,7 @@ const twitchHeaders = new Headers({
 
 let list = document.getElementById("messages");
 let user = "Default Name";
-let userColor = "blue";
+let userColor = "red";
 let date;
 let hasText = false;
 let iconValue = "";
