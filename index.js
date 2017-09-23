@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
 const {CONFIG} = require('./config');
+const port = process.env.PORT || 3000;
 
 // logging configuration
 winston.configure({
@@ -135,6 +136,6 @@ function addNameSpace(name) {
 
 // add route checker and adder
 
-http.listen(3000, function() {
-	console.log("listening on *:3000");
+http.listen(port, function() {
+	console.log("listening on *:" + port);
 });
