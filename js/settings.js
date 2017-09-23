@@ -112,6 +112,7 @@ function setColors(background, text, divBackground) {
 	document.getElementById("footer").style.backgroundColor = divBackground;
 	document.getElementById("roomName").style.backgroundColor = divBackground;
 	document.getElementById("addEmote").style.backgroundColor = divBackground;
+	document.getElementById("login").style.backgroundColor = divBackground;
 	document.getElementById("roomName").style.color = text;
 	document.getElementById("setting").style.backgroundColor = divBackground;
 	document.getElementById("settingsDiv").style.backgroundColor = divBackground;
@@ -128,15 +129,15 @@ function toggleMenu(id) {
 	}
 }
 
-function openSideBar() {
-	document.getElementById("leftNav").style.width = "250px";
-	document.getElementById("leftNavItems").style.visibility = "visible";
+function openSideBar(nav, navItems) {
+	document.getElementById(nav).style.width = "250px";
+	document.getElementById(navItems).style.visibility = "visible";
 	document.getElementById("chatContainer").style.left = "250px";
 }
 
-function closeSideBar() {
-	document.getElementById("leftNav").style.width = "0";
-	document.getElementById("leftNavItems").style.visibility = "hidden";
+function closeSideBar(nav, navItems) {
+	document.getElementById(nav).style.width = "0";
+	document.getElementById(navItems).style.visibility = "hidden";
 	document.getElementById("chatContainer").style.left = "0px";
 }
 

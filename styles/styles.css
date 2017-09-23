@@ -97,7 +97,13 @@ input {
 .sidenav #leftNavItems {
 	visibility: hidden;
 	padding-left: 5px;
-	padding-right: 0px;
+	height: calc(100% - 30px);
+}
+
+.sidenav #navMenuItems {
+	visibility: hidden;
+	padding-left: 5px;
+	height: calc(100% - 30px);
 }
 
 .sidenav h4, p {
@@ -113,14 +119,19 @@ input {
 	padding-top: 1px;
 }
 
+#navMenu a{
+	width: 100%;
+	background-color: rgb(100, 65, 164);
+	color: #D3D3D3;
+	padding: 10px 50px;
+	text-align: justify;
+}
+
 .sidenav a i {
 	border: none;
 	border-radius: 2px;
 	background-color: rgb(100, 65, 164);
 	color: #D3D3D3;
-	padding-right: 2px;
-	padding-left: 2px;
-	padding-top: 1px;
 }
 
 .sidenav #closeBtn {
@@ -129,7 +140,6 @@ input {
 	right: 30px;
 	margin-left: 50px;
 }
-
 
 .sideBtnClass {
 	background-color: rgba(17, 17, 17, .9);
@@ -197,6 +207,14 @@ input {
 	border: none;
 	float: left;
 	margin-top: 12px;
+	margin-left: 15px;
+	font-size: 13px;
+}
+
+#login {
+	border: none;
+	float: left;
+	margin-top: 12px;
 	margin-left: 5px;
 	font-size: 13px;
 }
@@ -248,6 +266,10 @@ input {
 	height: auto;
 }
 
+#navMenuItems {
+	height: auto;
+}
+
 .emoteDisplay{
 	height: 70px;
 	position: relative;
@@ -291,6 +313,10 @@ input {
 	position: relative;
 }
 
+#twitchLoginDiv {
+	margin-top: 15px;
+}
+
 #chatContainer {
 	position: fixed;
 	top: 45px;
@@ -309,6 +335,7 @@ input {
 	padding: 0;
 	position: absolute;
 }
+
 #messages li {
 	padding: 0px 10px 0px 10px;
 	margin-bottom: 3px;

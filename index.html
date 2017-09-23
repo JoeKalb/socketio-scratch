@@ -15,7 +15,7 @@
     <!-- Side Nav Area -->>
     <div id="leftNav" class="sidenav" >
       <div id="leftNavItems" class="scroll">
-        <button onclick="closeSideBar()"><i>Close</i></button>
+        <button onclick="closeSideBar('leftNav', 'leftNavItems')"><i>Close</i></button>
 				<div id="darkMode" class="nonStatic">
           <h4 id="darkModeLabel" class="">Dark Mode: </h4>
           <label class="switch">
@@ -35,10 +35,6 @@
         <div id="nameDiv" class="nonStatic">
           <h4>Set Name: </h4>
           <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
-          <a onclick='setName()' class="sideBtnClass" title="Login With Twitch"
-						href="https://api.twitch.tv/kraken/oauth2/authorize?client_id=swy6o3hxxnevxwuwu0vrlah2dm1io9&redirect_uri=http://localhost:3000/&response_type=code&scope=user_read" disabled>
-            <i class="fa fa-twitch fa-1x" aria-hidden="true" title="Login With Twitch"></i>
-          </a>
 					<button onclick='setName()' class="sideBtnClass" title="Change your pleb name pleb">
             <i class="fa fa-plus fa-1x" aria-hidden="true" title="Change your pleb name pleb"></i>
           </button>
@@ -66,9 +62,23 @@
         </div>
       </div>
     </div>
+		<!-- Second Menu Twitch login and room navigation -->
+		<div id="navMenu" class="sidenav">
+			<div id="navMenuItems" class="scroll">
+				<button onclick="closeSideBar('navMenu', 'navMenuItems')"><i>Close</i></button>
+				<div id="twitchLoginDiv" class="nonStatic">
+					<a onclick='setName()' class="sideBtnClass" title="Login With Twitch"
+						href="https://api.twitch.tv/kraken/oauth2/authorize?client_id=swy6o3hxxnevxwuwu0vrlah2dm1io9&redirect_uri=http://localhost:3000/&response_type=code&scope=user_read">
+						<i class="fa fa-twitch fa-1x" aria-hidden="true" title="Login With Twitch"> </i> Login With Twitch
+					</a>
+				</div>
+			</div>
+		</div>
+
     <!-- Heading Area -->
     <div id="header" class="staticItem">
-      <button id="addEmote" onmouseover="openSideBar()" title="Add Channel"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+			<button id="login" onmouseover="openSideBar('navMenu', 'navMenuItems')"><i class="fa fa-bars" aria-hidden="true"></i></button>
+			<button id="addEmote" onmouseover="openSideBar('leftNav', 'leftNavItems')" title="Add Channel"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
       <h4 id="roomName">Chat Room</h4>
     </div>
     <!-- Chat messages will live in this container -->

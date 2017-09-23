@@ -118,5 +118,8 @@ function addEmoteToMessage(emoteName) {
 
 // module.exports = {
 // 	appendName,
-// 	imageBuilder
+// 	imageBuilder,
+// 	appendText,
+// 	replaceEmotes,
+// 	findEmoteId
 // }
