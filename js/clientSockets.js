@@ -50,4 +50,4 @@ function connect(name) {
 }
 
 // This will later connect to the artist name and the room will be the streamer
-connect("artistName");
+connect("");
