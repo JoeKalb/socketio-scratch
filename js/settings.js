@@ -45,6 +45,8 @@ document.getElementById("nameInput").addEventListener("keypress", function(e){
 function setName() {
 	user = document.getElementById("nameInput").value;
 	nameInput = document.getElementById("nameInput");
+	document.getElementById("nameInput").style.borderColor = "green";
+	document.getElementById("nameInput").style.borderStyle = "solid";
 }
 
 function setIcon(icon) {
