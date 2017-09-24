@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
-const {CONFIG} = require('./config');
+//const {CONFIG} = require('./config');
 const port = process.env.PORT || 3000;
 
 // logging configuration
