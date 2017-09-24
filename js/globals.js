@@ -2,7 +2,7 @@
 	This contains all of the constants, settings, various objects used to in multiple parts of the code.
 	I'm currently treating this like globals to sit on the top level of the program.
 */
-const emoteURL = 'http://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
+const emoteURL = 'https://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0';
 const twitchEmoteAPI = 'https://twitchemotes.com/api_cache/v3/global.json';
 const twitchUsersURL = 'https://api.twitch.tv/kraken/users?login={name}';
 const twitchHeaders = new Headers({
