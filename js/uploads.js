@@ -124,7 +124,7 @@ window.onload = function() {
 				img.src = reader.result;
 				img.id = "emotePreview";
 				fileDisplayArea.appendChild(img);
-				if (img.width < 35 || img.height < 35) {
+				if (img.width > 35 || img.height > 35) {
 					let p = document.createElement("p");
 					p.innerHTML = "Emote will not upload because of size.";
 					console.log("Emote Height: " + img.height);
