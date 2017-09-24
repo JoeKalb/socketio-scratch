@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
-const {CONFIG} = require('./config');
+//const {CONFIG} = require('./config');
 const port = process.env.PORT || 3000;
 
 // logging configuration
@@ -68,6 +68,7 @@ app.get('/broadcaster/:channel_id', function(req, res) {
 });
 
 // Making twitch OAUTH calls
+/*
 const TWITCHOAUTH = "https://api.twitch.tv/api/oauth2/token?client_id=<your client ID>&client_secret=<your client secret>&code=<authorization code received above>&grant_type=authorization_code&redirect_uri=<your registered redirect URI>"
 	.replace("<your client ID>", CONFIG.CLIENT_ID)
 	.replace("<your client secret>", CONFIG.CLIENT_SECRET)
@@ -86,7 +87,7 @@ app.get('/login/:code', function(req, res) {
 		}
 	});
 });
-
+*/
 // Setting up app front end
 app.use('/node_modules/font-awesome/', express.static(path.join(__dirname + '/node_modules/font-awesome/')));
 app.use('/styles', express.static(path.join(__dirname + '/styles')));
