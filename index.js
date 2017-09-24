@@ -6,7 +6,21 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
-//const {CONFIG} = require('./config');
+
+// Set up CONFIG for environment
+let CONFIG;
+if(process.env.CLIENT_ID !== undefined) {
+	CONFIG = {
+	  CLIENT_SECRET: process.env.CLIENT_SECRET,
+	  CLIENT_ID: process.env.CLIENT_ID,
+	  REDIRECT_URI: process.env.REDIRECT_URI
+	}
+} else {
+	const localConfig = require('./config');
+	CONFIG = localConfig.CONFIG;
+};
+
+//port
 const port = process.env.PORT || 3000;
 
 // logging configuration
@@ -70,9 +84,9 @@ app.get('/broadcaster/:channel_id', function(req, res) {
 // Making twitch OAUTH calls
 
 const TWITCHOAUTH = "https://api.twitch.tv/api/oauth2/token?client_id=<your client ID>&client_secret=<your client secret>&code=<authorization code received above>&grant_type=authorization_code&redirect_uri=<your registered redirect URI>"
-	.replace("<your client ID>", /*CONFIG.CLIENT_ID ||*/ process.env.CLIENT_ID)
-	.replace("<your client secret>", /*CONFIG.CLIENT_SECRET ||*/ process.env.CLIENT_SECRET)
-	.replace("<your registered redirect URI>", /*CONFIG.REDIRECT_URI ||*/ process.env.REDIRECT_URI);
+	.replace("<your client ID>", CONFIG.CLIENT_ID)
+	.replace("<your client secret>", CONFIG.CLIENT_SECRET)
+	.replace("<your registered redirect URI>", CONFIG.REDIRECT_URI);
 app.get('/login/:code', function(req, res) {
 	let twitchCall = TWITCHOAUTH.replace("<authorization code received above>", req.params.code);
 	co(function *() {
