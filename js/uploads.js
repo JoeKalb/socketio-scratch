@@ -38,6 +38,7 @@ async function checkForBroadcasters() {
 				document.getElementById('streamerInput').value = 'lirik';
 				document.getElementById('streamerInputBtn').disabled = false;
 				console.log('Broadcaster Search Default, only Lirik');
+				if(addedStreamers[0] == 'lirik') document.getElementById('streamerInputBtn').disabled = true;
 			}else if(json.emotes.length > 3){
 				document.getElementById('streamerInput').disabled = false;
 				document.getElementById('streamerInput').value = '';

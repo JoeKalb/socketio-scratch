@@ -60,7 +60,8 @@ function getData() {
 	co(function *() {
 		try{
 			let res = yield fetch('https://twitchemotes.com/api_cache/v3/subscriber.json');
-			broadcasters = yield res.json();
+			let rawBroadcasters = yield res.json();
+			broadcasters = filterBroadcasters(rawBroadcasters);
 			let minutes = Math.round(((new Date()) - date) / 1000 / 60);
 			winston.log("info", "Broadcasters Data Updated");
 			winston.log("info", "Minutes to update: " + minutes);
@@ -73,6 +74,21 @@ function getData() {
 getData();
 // refresh data every half an hour!
 setInterval(getData, 1.8e6);
+
+// add function for filtering data from twitchemotes api
+function filterBroadcasters(info){
+	let filtered = {};
+	for(i in info){
+		let temp = {
+			"channel_name": info[i].channel_name,
+      "display_name": info[i].display_name,
+      "channel_id": i,
+      "emotes": info[i].emotes
+		};
+		filtered[i] = temp;
+	}
+	return filtered;
+}
 
 app.get('/globals', function(req, res) {
 	if (globals) {
