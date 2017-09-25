@@ -6,7 +6,8 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
-const { BROADCASTERS } = require('./broadcasters');
+const { BROADCASTERS } = require('./data/broadcasters');
+const { GLOBALS } = require('./data/global');
 
 // Set up CONFIG for environment
 let CONFIG;
@@ -42,7 +43,7 @@ winston.configure({
 });
 
 // Setting up local data
-let globals;
+let globals = GLOBALS;
 let broadcasters = BROADCASTERS;
 function getData() {
 	let date = new Date();
@@ -53,6 +54,7 @@ function getData() {
 			winston.log("info", "Gloabal Emotes Updated");
 		} catch(err) {
 			winston.log("error", "Problem Updating Global Emotes");
+			winston.log("info", "Using Previous Globals");
 		}
 	});
 	co(function *() {

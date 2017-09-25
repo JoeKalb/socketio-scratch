@@ -28,28 +28,31 @@ async function getStreamerData(name) {
 	}
 }
 
-async function checkForBroadcasters(channel_id) {
+async function checkForBroadcasters() {
+	console.log('Check for live broadcasters');
 	try{
-		let response = await fetch(location + 'broadcaster/' + channel_id);
+		let response = await fetch(location + 'broadcaster/' + 23161357);
 		let json = await response.json();
-		if(json.channel_name == 'lirik') {
+		if(json.emotes.length === 3) {
 			document.getElementById('streamerInput').value = 'lirik';
 			document.getElementById('streamerInputBtn').disabled = false;
 			console.log('Broadcaster Search Default, only Lirik');
-		}else if(json.channel_name !== undefined){
+		}else if(json.emotes.length > 3){
 			document.getElementById('streamerInput').disabled = false;
 			document.getElementById('streamerInput').value = '';
 			document.getElementById('streamerInputBtn').disabled = false;
+			document.getElementById('streamersDivMessage').innerHTML = '';
 		}else{
 			console.log('Broadcaster Search Disabled');
-			console.log('Broadcaster ID: ' + channel_id + ' not found.');
+			console.log('Problem with server');
+			document.getElementById('streamersDivMessage').innerHTML = '*Problem with server.';
 		}
 	}
 	catch (err){
 		console.log('Broadcaster Search Currently Unavailable: ' + err);
 	}
 }
-setInterval(checkForBroadcasters(18587270), 300000);
+setInterval(checkForBroadcasters, 300000);
 
 async function getStreamerInfo(id) {
 	try{
@@ -130,8 +133,7 @@ function buildEmoteDiv(emotesArray, name) {
 
 // Uploading new emotes for previewing!!!
 window.onload = function() {
-	checkForBroadcasters(23161357);
-	checkForBroadcasters(18587270)
+	checkForBroadcasters();
 
 	let fileInput = document.getElementById('fileInput');
 	let fileDisplayArea = document.getElementById('fileDisplayArea');
