@@ -14,7 +14,7 @@ function connectToNameSpace() {
 function connect(name) {
 	socket = io("/" + name);
 	document.getElementById("roomName").innerHTML = name;
-	// sockets
+	// socket actions
 	socket.on('chat message', function(message) {
 		let li = document.createElement("li");
 		li.appendChild(appendMessage(message));
@@ -47,6 +47,7 @@ function connect(name) {
 	socket.on('remove session emote', (name) => {
 		removeLocally(name);
 	});
+
 }
 
 // This will later connect to the artist name and the room will be the streamer

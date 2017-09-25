@@ -28,6 +28,24 @@ async function getStreamerData(name) {
 	}
 }
 
+async function checkForBroadcasters() {
+	try{
+		let response = await fetch(location + 'broadcaster/23161357');
+		let json = await response.json();
+		if(json.channel_name == 'lirik') {
+			document.getElementById('streamerInput').disabled = false;
+			document.getElementById('streamerInputBtn').disabled = false;
+			console.log('Broadcaster Search Enabled');
+		}else{
+			console.log('Broadcaster Search Disabled');
+		}
+	}
+	catch (err){
+		console.log('Broadcaster Search Currently Unavailable: ' + err);
+	}
+}
+setInterval(checkForBroadcasters, 300000);
+
 async function getStreamerInfo(id) {
 	try{
 		let response = await fetch(location + 'broadcaster/' + id);
@@ -107,6 +125,7 @@ function buildEmoteDiv(emotesArray, name) {
 
 // Uploading new emotes for previewing!!!
 window.onload = function() {
+	checkForBroadcasters();
 
 	let fileInput = document.getElementById('fileInput');
 	let fileDisplayArea = document.getElementById('fileDisplayArea');

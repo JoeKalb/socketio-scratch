@@ -22,15 +22,6 @@
             <span class="slider round"></span>
           </label>
         </div>
-        <!--
-        <div id="nameSpace">
-          <h4>Name Space:</h4>
-          <input type="text" placeholder="Join or Create Name Space" id="nameSpaceInput">
-          <button onclick='connectToNameSpace()' class="sideBtnClass">
-            <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
-          </button>
-        </div>
-        -->
         <div id="nameDiv" class="nonStatic">
           <h4>Set Name: </h4>
           <i id="currentIcon"></i><input type="text" placeholder="Add User Name" id="nameInput">
@@ -42,9 +33,9 @@
         <br>
         <div id="streamersDiv" class="nonStatic">
           <h4>Add Streamer Emotes: </h4>
-					<p>Been having issues with the twitchemotes api for getting broadcasters, currently disabled until further notice.</p>
+					<p>*Been having issues with the twitchemotes api for getting broadcasters. The broadcasters data will try to update every half hour but I have a backup of a previous copy of the data so this feature is still be usable but not always up to date.</p>
           <input disabled="true" type="text" placeholder="Search Streamer" id="streamerInput">
-          <button disabled="true" onclick='findStreamer()' class="sideBtnClass" title="Search Streamer">
+          <button disabled="true" onclick='findStreamer()' class="sideBtnClass" title="Search Streamer" id="streamerInputBtn">
             <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
           </button>
         </div>
@@ -136,6 +127,7 @@
       <button id="chat" onclick="sendMessage()">Chat</button>
     </div>
   </div>
+	<!-- script tags -->
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/globals.js"></script>
   <script src="/js/settings.js"></script>

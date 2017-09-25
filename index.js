@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 const co = require('co');
 const winston = require('winston');
+const { BROADCASTERS } = require('./broadcasters');
 
 // Set up CONFIG for environment
 let CONFIG;
@@ -42,7 +43,7 @@ winston.configure({
 
 // Setting up local data
 let globals;
-let broadcasters;
+let broadcasters = BROADCASTERS;
 function getData() {
 	let date = new Date();
 	co(function *() {
@@ -63,8 +64,8 @@ function getData() {
 			winston.log("info", "Minutes to update: " + minutes);
 		} catch(err) {
 			winston.log("error", "Problem Updating Broadcasters");
+			winston.log("info", "Using Previous Broadcasters");
 		}
-
 	});
 }
 getData();
@@ -160,6 +161,6 @@ function addNameSpace(name) {
 
 // add route checker and adder
 
-http.listen(port, function() {
+http.listen(port, () => {
 	console.log("listening on *:" + port);
 });
