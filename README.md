@@ -3,8 +3,14 @@ From scratch socketio chat
 
 Shout out to the twitchemotes.com for the API!
 
-If you want to look at it so far:
+If you want to run this project locally:
 ```bash
-  npm install --save
-  node index.js
+  npm install
+  npm start
+  localhost:3000
+```
+
+If you want to look at what it currently looks like so far check it out!
+```bash
+  https://emotetester-v1.herokuapp.com/
 ```
