@@ -46,6 +46,7 @@ winston.configure({
 let globals = GLOBALS;
 let broadcasters = BROADCASTERS;
 function getData() {
+	winston.log("info", "Fetching data from twitchemotes API");
 	let date = new Date();
 	co(function *() {
 		try{
