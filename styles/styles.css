@@ -82,7 +82,7 @@ input {
 }
 
 .sidenav {
-	height: calc(100% - 94px);
+	height: calc(100% - 90px);
 	width: 0;
 	position: fixed;
 	z-index: 1;

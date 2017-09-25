@@ -46,16 +46,25 @@ let broadcasters;
 function getData() {
 	let date = new Date();
 	co(function *() {
-		let res = yield fetch('https://twitchemotes.com/api_cache/v3/global.json');
-		globals = yield res.json();
-		winston.log("info", "Gloabal Emotes Updated");
+		try{
+			let res = yield fetch('https://twitchemotes.com/api_cache/v3/global.json');
+			globals = yield res.json();
+			winston.log("info", "Gloabal Emotes Updated");
+		} catch(err) {
+			winston.log("error", "Problem Updating Global Emotes");
+		}
 	});
 	co(function *() {
-		let res = yield fetch('https://twitchemotes.com/api_cache/v3/subscriber.json');
-		broadcasters = yield res.json();
-		let minutes = Math.round(((new Date()) - date) / 1000 / 60);
-		winston.log("info", "Broadcasters Data Updated");
-		winston.log("info", "Minutes to update: " + minutes);
+		try{
+			let res = yield fetch('https://twitchemotes.com/api_cache/v3/subscriber.json');
+			broadcasters = yield res.json();
+			let minutes = Math.round(((new Date()) - date) / 1000 / 60);
+			winston.log("info", "Broadcasters Data Updated");
+			winston.log("info", "Minutes to update: " + minutes);
+		} catch(err) {
+			winston.log("error", "Problem Updating Broadcasters");
+		}
+
 	});
 }
 getData();
