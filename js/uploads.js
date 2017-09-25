@@ -29,27 +29,30 @@ async function getStreamerData(name) {
 }
 
 async function checkForBroadcasters() {
-	console.log('Check for live broadcasters');
-	try{
-		let response = await fetch(location + 'broadcaster/' + 23161357);
-		let json = await response.json();
-		if(json.emotes.length === 3) {
-			document.getElementById('streamerInput').value = 'lirik';
-			document.getElementById('streamerInputBtn').disabled = false;
-			console.log('Broadcaster Search Default, only Lirik');
-		}else if(json.emotes.length > 3){
-			document.getElementById('streamerInput').disabled = false;
-			document.getElementById('streamerInput').value = '';
-			document.getElementById('streamerInputBtn').disabled = false;
-			document.getElementById('streamersDivMessage').innerHTML = '';
-		}else{
-			console.log('Broadcaster Search Disabled');
-			console.log('Problem with server');
-			document.getElementById('streamersDivMessage').innerHTML = '*Problem with server.';
+	if(!liveBroadcasters) {
+		console.log('Check for live broadcasters');
+		try{
+			let response = await fetch(location + 'broadcaster/' + 23161357);
+			let json = await response.json();
+			if(json.emotes.length === 3) {
+				document.getElementById('streamerInput').value = 'lirik';
+				document.getElementById('streamerInputBtn').disabled = false;
+				console.log('Broadcaster Search Default, only Lirik');
+			}else if(json.emotes.length > 3){
+				document.getElementById('streamerInput').disabled = false;
+				document.getElementById('streamerInput').value = '';
+				document.getElementById('streamerInputBtn').disabled = false;
+				document.getElementById('streamersDivMessage').innerHTML = '';
+				liveBroadcasters = true;
+			}else{
+				console.log('Broadcaster Search Disabled');
+				console.log('Problem with server');
+				document.getElementById('streamersDivMessage').innerHTML = '*Problem with server.';
+			}
 		}
-	}
-	catch (err){
-		console.log('Broadcaster Search Currently Unavailable: ' + err);
+		catch (err){
+			console.log('Broadcaster Search Currently Unavailable: ' + err);
+		}
 	}
 }
 setInterval(checkForBroadcasters, 300000);
