@@ -238,4 +238,4 @@ function checkForPreviousUploads() {
 checkForPreviousUploads();
 
 // open sidename initially for testing
-//window.onload = openSideBar("navMenu", "navMenuItems");
+openSideBar('leftNav', 'leftNavItems');
