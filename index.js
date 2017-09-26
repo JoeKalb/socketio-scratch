@@ -66,6 +66,7 @@ function getData() {
 			let minutes = Math.round(((new Date()) - date) / 1000 / 60);
 			winston.log("info", "Broadcasters Data Updated");
 			winston.log("info", "Minutes to update: " + minutes);
+			io.emit('enable broadcasters');
 		} catch(err) {
 			winston.log("error", "Problem Updating Broadcasters");
 			winston.log("info", "Using Previous Broadcasters");

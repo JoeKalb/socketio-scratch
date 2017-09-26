@@ -48,6 +48,10 @@ function connect(name) {
 		removeLocally(name);
 	});
 
+	socket.on('enable broadcasters', () => {
+		checkForBroadcasters();
+	})
+
 }
 
 // This will later connect to the artist name and the room will be the streamer

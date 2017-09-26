@@ -44,6 +44,7 @@ async function checkForBroadcasters() {
 				document.getElementById('streamerInput').value = '';
 				document.getElementById('streamerInputBtn').disabled = false;
 				document.getElementById('streamersDivMessage').innerHTML = '';
+				console.log('Broadcasters updated! Search away!!!');
 				liveBroadcasters = true;
 			}else{
 				console.log('Broadcaster Search Disabled');
@@ -56,7 +57,6 @@ async function checkForBroadcasters() {
 		}
 	}
 }
-setInterval(checkForBroadcasters, 300000);
 
 async function getStreamerInfo(id) {
 	try{
