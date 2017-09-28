@@ -74,8 +74,8 @@ function getData() {
 	});
 }
 getData();
-// refresh data every half an hour!
-setInterval(getData, 1.8e6);
+// refresh data every 40 minutes to avoid timeouts!
+setInterval(getData, 2.4e6);
 
 // add function for filtering data from twitchemotes api
 function filterBroadcasters(info){
