@@ -92,7 +92,7 @@ function filterBroadcasters(info){
 	return filtered;
 }
 
-app.get('/globals', function(req, res) {
+app.get('/globals', (req, res) => {
 	if (globals) {
 		res.status(200).json(globals);
 		winston.log("info", "Global Emotes Sent")
@@ -101,7 +101,7 @@ app.get('/globals', function(req, res) {
 		res.send({ "error": "Emote Not Found" });
 	}
 });
-app.get('/broadcaster/:channel_id', function(req, res) {
+app.get('/broadcaster/:channel_id', (req, res) => {
 	if (broadcasters[req.params.channel_id]) {
 		res.status(200).json(broadcasters[req.params.channel_id]);
 		winston.log("info", "Broadcaster info sent ID: ".concat(req.params.channel_id));
@@ -117,7 +117,7 @@ const TWITCHOAUTH = "https://api.twitch.tv/api/oauth2/token?client_id=<your clie
 	.replace("<your client ID>", CONFIG.CLIENT_ID)
 	.replace("<your client secret>", CONFIG.CLIENT_SECRET)
 	.replace("<your registered redirect URI>", CONFIG.REDIRECT_URI);
-app.get('/login/:code', function(req, res) {
+app.get('/login/:code', (req, res) => {
 	let twitchCall = TWITCHOAUTH.replace("<authorization code received above>", req.params.code);
 	co(function *() {
 		let twitchPromise = yield fetch(twitchCall, {
@@ -137,7 +137,7 @@ app.use('/node_modules/font-awesome/', express.static(path.join(__dirname + '/no
 app.use('/styles', express.static(path.join(__dirname + '/styles')));
 app.use('/js', express.static(path.join(__dirname + '/js')));
 app.use('/', express.static(path.join(__dirname + '/')));
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
 

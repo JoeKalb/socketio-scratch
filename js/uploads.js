@@ -136,9 +136,7 @@ function buildEmoteDiv(emotesArray, name) {
 }
 
 // Uploading new emotes for previewing!!!
-window.onload = function() {
-	checkForBroadcasters();
-
+function fileUploading() {
 	let fileInput = document.getElementById('fileInput');
 	let fileDisplayArea = document.getElementById('fileDisplayArea');
 	fileInput.style.color = 'white';
@@ -239,3 +237,9 @@ checkForPreviousUploads();
 
 // open sidename initially for testing
 openSideBar('leftNav', 'leftNavItems');
+
+// adding the onload functions
+window.onload = function() {
+	fileUploading();
+	checkForBroadcasters();
+}
