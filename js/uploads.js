@@ -32,7 +32,7 @@ async function checkForBroadcasters() {
 	if(!liveBroadcasters) {
 		console.log('Check for live broadcasters');
 		try{
-			let response = await fetch(location + 'broadcaster/' + 23161357);
+			let response = await fetch(location.origin + '/broadcaster/' + 23161357);
 			let json = await response.json();
 			if(json.emotes.length === 3) {
 				document.getElementById('streamerInput').value = 'lirik';
@@ -60,8 +60,7 @@ async function checkForBroadcasters() {
 
 async function getStreamerInfo(id) {
 	try{
-		let response = await fetch(location + 'broadcaster/' + id);
-		console.log(response);
+		let response = await fetch(location.origin + '/broadcaster/' + id);
 		let json = await response.json();
 		addStreamerEmotes(json);
 	}catch(err){
@@ -105,7 +104,6 @@ function createListItem(streamer) {
 	div.appendChild(a);
 	span.appendChild(div);
 	document.getElementById("streamersDiv").appendChild(span);
-	console.log(streamer._id);
 	getStreamerInfo(streamer._id);
 }
 

@@ -13,7 +13,7 @@ function getJson(urlValue) {
 	})
 }
 
-getJson(location + 'globals').then((res) => {
+getJson(location.origin + '/globals').then((res) => {
 	localEmotes = res;
 });
 

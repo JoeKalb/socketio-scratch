@@ -125,7 +125,7 @@ app.get('/login/:code', (req, res) => {
 		});
 		let twitchInfo = yield twitchPromise.json();
 		try {
-			res.send({"success": twitchInfo});
+			res.json( twitchInfo );
 		} catch(err) {
 			res.error({"THERE WAS AN ERROR": err});
 		}
