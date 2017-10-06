@@ -29,6 +29,7 @@ let timeStamp = false;
 let localEmotes;
 let addedStreamers = [];
 let liveBroadcasters = false;
+let tokens;
 
 
 // Stop any IMG downloading, shoutout to forestmist.org
