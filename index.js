@@ -110,6 +110,18 @@ app.get('/broadcaster/:channel_id', (req, res) => {
 		res.send({ "error": "Broadcaster not found" });
 	}
 });
+app.get('/live', (req, res) => {
+	if(process.env.REDIRECT_URI) {
+		res.status(200).json({
+			"status": "live",
+			"env": CONFIG.REDIRECT_URI
+		})
+	} else{
+		res.status(200).json({
+			"status": "local"
+		})
+	}
+})
 
 // Making twitch OAUTH calls
 

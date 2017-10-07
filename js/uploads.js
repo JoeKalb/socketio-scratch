@@ -240,4 +240,5 @@ openSideBar('leftNav', 'leftNavItems');
 window.onload = function() {
 	fileUploading();
 	checkForBroadcasters();
+	checkForENV();
 }

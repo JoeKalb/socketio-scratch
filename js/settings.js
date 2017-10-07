@@ -144,3 +144,24 @@ function closeSideBar(nav, navItems) {
 function clearContents(element) {
 	if (!hasText) element.value = '';
 }
+
+async function checkForENV() {
+	try{
+		let promise = await fetch(location.origin + "/live");
+		let current = await promise.json();
+		if(current.status === "local"){
+			console.log("Currently Running local env.");
+			return false;
+		} else if (current.status === "live") {
+			let twitchHRef = document.getElementById("twitchATag");
+			twitchHRef.href = twitchHRef.href.replace("http://localhost:3000/", current.env);
+			return false;
+		} else{
+			console.log("Something went wrong on the environment check...");
+			return false;
+		}
+	}
+	catch(err) {
+		console.log("Currently using local env: " + err);
+	}
+}
