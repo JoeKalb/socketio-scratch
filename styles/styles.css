@@ -82,7 +82,8 @@ input {
 }
 
 .sidenav {
-	height: calc(100% - 7em);
+	height: 85vh;
+	/*height: calc(100% - 7em;*/
 	width: 0;
 	position: fixed;
 	z-index: 1;
@@ -245,6 +246,7 @@ input {
 	position: fixed;
 	bottom: 0;
 	flex: 0 0 auto;
+	height: 15vh;
 }
 
 .popUp {
