@@ -114,7 +114,8 @@ app.get('/live', (req, res) => {
 	if(process.env.REDIRECT_URI) {
 		res.status(200).json({
 			"status": "live",
-			"env": CONFIG.REDIRECT_URI
+			"env_uri": CONFIG.REDIRECT_URI,
+			"env_client_id": CONFIG.CLIENT_ID
 		})
 	} else{
 		res.status(200).json({

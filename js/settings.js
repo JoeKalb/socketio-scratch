@@ -154,7 +154,7 @@ async function checkForENV() {
 			return false;
 		} else if (current.status === "live") {
 			let twitchHRef = document.getElementById("twitchATag");
-			twitchHRef.href = twitchHRef.href.replace("http://localhost:3000/", current.env);
+			twitchHRef.href = twitchHRef.href.replace("http://localhost:3000/", current.env_uri).replace("swy6o3hxxnevxwuwu0vrlah2dm1io9", current.env_client_id);
 			return false;
 		} else{
 			console.log("Something went wrong on the environment check...");
