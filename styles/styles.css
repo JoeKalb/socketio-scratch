@@ -333,7 +333,7 @@ input {
 #chatContainer {
 	position: fixed;
 	top: 45px;
-	height: calc(100% - 140px);
+	height: 79vh;
 }
 
 #chatContainer:after {
