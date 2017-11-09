@@ -82,7 +82,7 @@ input {
 }
 
 .sidenav {
-	height: 85vh;
+	height: calc(100vh - 101px);
 	/*height: calc(100% - 7em;*/
 	width: 0;
 	position: fixed;
@@ -246,7 +246,7 @@ input {
 	position: fixed;
 	bottom: 0;
 	flex: 0 0 auto;
-	height: 15vh;
+	height: 100px;
 }
 
 .popUp {
@@ -333,7 +333,7 @@ input {
 #chatContainer {
 	position: fixed;
 	top: 45px;
-	height: 79vh;
+	height: calc(100vh - 147px);
 }
 
 #chatContainer:after {
