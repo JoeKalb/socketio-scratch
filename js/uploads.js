@@ -71,9 +71,12 @@ async function getStreamerInfo(id) {
 function findStreamer() {
 	let streamer = document.getElementById("streamerInput").value;
 	streamer = streamer.trim();
-	streamer = streamer.split(' ').join('').toLowerCase();
-	if (!addedStreamers.includes(streamer)) socket.emit("add emotes", streamer);
-	document.getElementById("streamerInput").value = '';
+	if(streamer != '') {
+		streamer = streamer.split(' ').join('').toLowerCase();
+		if (!addedStreamers.includes(streamer)) socket.emit("add emotes", streamer);
+		document.getElementById("streamerInput").value = '';
+	}
+
 }
 
 function addStreamer(data) {
